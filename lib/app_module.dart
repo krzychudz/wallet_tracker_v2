@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:wallet_tracker_v2/feature-dashboard/dashboard_module.dart';
+import 'package:wallet_tracker_v2/features/dashboard/dashboard_module.dart';
 
 class AppModule extends Module {
   @override
@@ -7,6 +7,9 @@ class AppModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute('/', module: DashboardModule()),
+        ModuleRoute(
+          '/',
+          module: DashboardModule(),
+        ),
       ];
 }
