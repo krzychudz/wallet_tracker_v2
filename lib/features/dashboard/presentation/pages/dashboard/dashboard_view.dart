@@ -23,6 +23,10 @@ class DashboardView extends StatelessWidget {
       body: Center(
         child: Text('Dashboard Screen'),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => {},
+      ),
     );
   }
 }
