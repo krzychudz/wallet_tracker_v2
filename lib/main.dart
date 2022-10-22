@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:wallet_tracker_v2/theme/theme.dart';
 
 import 'app_module.dart';
 
@@ -18,9 +19,7 @@ class WalletTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Wallet Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightThemeData(context),
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
     );
