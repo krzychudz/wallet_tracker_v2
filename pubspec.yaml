@@ -41,6 +41,7 @@ dependencies:
   freezed: ^2.2.0
   json_serializable: ^6.5.3
   dartz: ^0.10.1
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:
