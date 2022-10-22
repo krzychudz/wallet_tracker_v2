@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:wallet_tracker_v2/features/add_account/add_account_module.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -24,8 +26,8 @@ class DashboardView extends StatelessWidget {
         child: Text('Dashboard Screen'),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => {},
+        child: const Icon(Icons.add),
+        onPressed: () => Modular.to.pushNamed(AddAccountModule.route),
       ),
     );
   }
