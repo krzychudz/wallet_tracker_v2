@@ -20,6 +20,10 @@ dependencies:
   dartz: ^0.10.1
   google_fonts: ^3.0.1
   easy_localization: ^3.0.1
+  drift: ^2.2.0
+  sqlite3_flutter_libs: ^0.5.10
+  path_provider: ^2.0.11
+  path: ^1.8.2
 
 dev_dependencies:
   flutter_test:

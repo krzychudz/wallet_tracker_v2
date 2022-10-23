@@ -43,12 +43,3 @@ class AddAccountView extends StatelessWidget {
     );
   }
 }
-
-class AddAccount extends StatelessWidget {
-  const AddAccount({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
