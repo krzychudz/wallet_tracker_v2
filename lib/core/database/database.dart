@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:wallet_tracker_v2/core/database/daos/account/accounts_dao.dart';
 import 'package:wallet_tracker_v2/core/database/tables/account/account_table.dart';
 import 'package:path/path.dart' as p;
 import 'package:drift/native.dart';
@@ -10,7 +11,10 @@ import 'package:wallet_tracker_v2/core/database/tables/income/income_table.dart'
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [Account, Expense, Income])
+@DriftDatabase(
+  tables: [Accounts, Expenses, Incomes],
+  daos: [AccountsDao],
+)
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 

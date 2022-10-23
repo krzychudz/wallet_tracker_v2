@@ -7,12 +7,12 @@ part of 'database.dart';
 // **************************************************************************
 
 // ignore_for_file: type=lint
-class AccountData extends DataClass implements Insertable<AccountData> {
+class Account extends DataClass implements Insertable<Account> {
   final String id;
   final int balance;
   final String currencyCode;
   final String name;
-  const AccountData(
+  const Account(
       {required this.id,
       required this.balance,
       required this.currencyCode,
@@ -27,8 +27,8 @@ class AccountData extends DataClass implements Insertable<AccountData> {
     return map;
   }
 
-  AccountCompanion toCompanion(bool nullToAbsent) {
-    return AccountCompanion(
+  AccountsCompanion toCompanion(bool nullToAbsent) {
+    return AccountsCompanion(
       id: Value(id),
       balance: Value(balance),
       currencyCode: Value(currencyCode),
@@ -36,10 +36,10 @@ class AccountData extends DataClass implements Insertable<AccountData> {
     );
   }
 
-  factory AccountData.fromJson(Map<String, dynamic> json,
+  factory Account.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return AccountData(
+    return Account(
       id: serializer.fromJson<String>(json['id']),
       balance: serializer.fromJson<int>(json['balance']),
       currencyCode: serializer.fromJson<String>(json['currencyCode']),
@@ -57,9 +57,9 @@ class AccountData extends DataClass implements Insertable<AccountData> {
     };
   }
 
-  AccountData copyWith(
+  Account copyWith(
           {String? id, int? balance, String? currencyCode, String? name}) =>
-      AccountData(
+      Account(
         id: id ?? this.id,
         balance: balance ?? this.balance,
         currencyCode: currencyCode ?? this.currencyCode,
@@ -67,7 +67,7 @@ class AccountData extends DataClass implements Insertable<AccountData> {
       );
   @override
   String toString() {
-    return (StringBuffer('AccountData(')
+    return (StringBuffer('Account(')
           ..write('id: $id, ')
           ..write('balance: $balance, ')
           ..write('currencyCode: $currencyCode, ')
@@ -81,25 +81,25 @@ class AccountData extends DataClass implements Insertable<AccountData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AccountData &&
+      (other is Account &&
           other.id == this.id &&
           other.balance == this.balance &&
           other.currencyCode == this.currencyCode &&
           other.name == this.name);
 }
 
-class AccountCompanion extends UpdateCompanion<AccountData> {
+class AccountsCompanion extends UpdateCompanion<Account> {
   final Value<String> id;
   final Value<int> balance;
   final Value<String> currencyCode;
   final Value<String> name;
-  const AccountCompanion({
+  const AccountsCompanion({
     this.id = const Value.absent(),
     this.balance = const Value.absent(),
     this.currencyCode = const Value.absent(),
     this.name = const Value.absent(),
   });
-  AccountCompanion.insert({
+  AccountsCompanion.insert({
     required String id,
     required int balance,
     required String currencyCode,
@@ -108,7 +108,7 @@ class AccountCompanion extends UpdateCompanion<AccountData> {
         balance = Value(balance),
         currencyCode = Value(currencyCode),
         name = Value(name);
-  static Insertable<AccountData> custom({
+  static Insertable<Account> custom({
     Expression<String>? id,
     Expression<int>? balance,
     Expression<String>? currencyCode,
@@ -122,12 +122,12 @@ class AccountCompanion extends UpdateCompanion<AccountData> {
     });
   }
 
-  AccountCompanion copyWith(
+  AccountsCompanion copyWith(
       {Value<String>? id,
       Value<int>? balance,
       Value<String>? currencyCode,
       Value<String>? name}) {
-    return AccountCompanion(
+    return AccountsCompanion(
       id: id ?? this.id,
       balance: balance ?? this.balance,
       currencyCode: currencyCode ?? this.currencyCode,
@@ -155,7 +155,7 @@ class AccountCompanion extends UpdateCompanion<AccountData> {
 
   @override
   String toString() {
-    return (StringBuffer('AccountCompanion(')
+    return (StringBuffer('AccountsCompanion(')
           ..write('id: $id, ')
           ..write('balance: $balance, ')
           ..write('currencyCode: $currencyCode, ')
@@ -165,11 +165,11 @@ class AccountCompanion extends UpdateCompanion<AccountData> {
   }
 }
 
-class $AccountTable extends Account with TableInfo<$AccountTable, AccountData> {
+class $AccountsTable extends Accounts with TableInfo<$AccountsTable, Account> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $AccountTable(this.attachedDatabase, [this._alias]);
+  $AccountsTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
@@ -200,11 +200,11 @@ class $AccountTable extends Account with TableInfo<$AccountTable, AccountData> {
   @override
   List<GeneratedColumn> get $columns => [id, balance, currencyCode, name];
   @override
-  String get aliasedName => _alias ?? 'account';
+  String get aliasedName => _alias ?? 'accounts';
   @override
-  String get actualTableName => 'account';
+  String get actualTableName => 'accounts';
   @override
-  VerificationContext validateIntegrity(Insertable<AccountData> instance,
+  VerificationContext validateIntegrity(Insertable<Account> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -239,9 +239,9 @@ class $AccountTable extends Account with TableInfo<$AccountTable, AccountData> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  AccountData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Account map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return AccountData(
+    return Account(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       balance: attachedDatabase.options.types
@@ -254,16 +254,16 @@ class $AccountTable extends Account with TableInfo<$AccountTable, AccountData> {
   }
 
   @override
-  $AccountTable createAlias(String alias) {
-    return $AccountTable(attachedDatabase, alias);
+  $AccountsTable createAlias(String alias) {
+    return $AccountsTable(attachedDatabase, alias);
   }
 }
 
-class ExpenseData extends DataClass implements Insertable<ExpenseData> {
+class Expense extends DataClass implements Insertable<Expense> {
   final String id;
   final int value;
   final String accountId;
-  const ExpenseData(
+  const Expense(
       {required this.id, required this.value, required this.accountId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -274,18 +274,18 @@ class ExpenseData extends DataClass implements Insertable<ExpenseData> {
     return map;
   }
 
-  ExpenseCompanion toCompanion(bool nullToAbsent) {
-    return ExpenseCompanion(
+  ExpensesCompanion toCompanion(bool nullToAbsent) {
+    return ExpensesCompanion(
       id: Value(id),
       value: Value(value),
       accountId: Value(accountId),
     );
   }
 
-  factory ExpenseData.fromJson(Map<String, dynamic> json,
+  factory Expense.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ExpenseData(
+    return Expense(
       id: serializer.fromJson<String>(json['id']),
       value: serializer.fromJson<int>(json['value']),
       accountId: serializer.fromJson<String>(json['accountId']),
@@ -301,15 +301,14 @@ class ExpenseData extends DataClass implements Insertable<ExpenseData> {
     };
   }
 
-  ExpenseData copyWith({String? id, int? value, String? accountId}) =>
-      ExpenseData(
+  Expense copyWith({String? id, int? value, String? accountId}) => Expense(
         id: id ?? this.id,
         value: value ?? this.value,
         accountId: accountId ?? this.accountId,
       );
   @override
   String toString() {
-    return (StringBuffer('ExpenseData(')
+    return (StringBuffer('Expense(')
           ..write('id: $id, ')
           ..write('value: $value, ')
           ..write('accountId: $accountId')
@@ -322,29 +321,29 @@ class ExpenseData extends DataClass implements Insertable<ExpenseData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ExpenseData &&
+      (other is Expense &&
           other.id == this.id &&
           other.value == this.value &&
           other.accountId == this.accountId);
 }
 
-class ExpenseCompanion extends UpdateCompanion<ExpenseData> {
+class ExpensesCompanion extends UpdateCompanion<Expense> {
   final Value<String> id;
   final Value<int> value;
   final Value<String> accountId;
-  const ExpenseCompanion({
+  const ExpensesCompanion({
     this.id = const Value.absent(),
     this.value = const Value.absent(),
     this.accountId = const Value.absent(),
   });
-  ExpenseCompanion.insert({
+  ExpensesCompanion.insert({
     required String id,
     required int value,
     required String accountId,
   })  : id = Value(id),
         value = Value(value),
         accountId = Value(accountId);
-  static Insertable<ExpenseData> custom({
+  static Insertable<Expense> custom({
     Expression<String>? id,
     Expression<int>? value,
     Expression<String>? accountId,
@@ -356,9 +355,9 @@ class ExpenseCompanion extends UpdateCompanion<ExpenseData> {
     });
   }
 
-  ExpenseCompanion copyWith(
+  ExpensesCompanion copyWith(
       {Value<String>? id, Value<int>? value, Value<String>? accountId}) {
-    return ExpenseCompanion(
+    return ExpensesCompanion(
       id: id ?? this.id,
       value: value ?? this.value,
       accountId: accountId ?? this.accountId,
@@ -382,7 +381,7 @@ class ExpenseCompanion extends UpdateCompanion<ExpenseData> {
 
   @override
   String toString() {
-    return (StringBuffer('ExpenseCompanion(')
+    return (StringBuffer('ExpensesCompanion(')
           ..write('id: $id, ')
           ..write('value: $value, ')
           ..write('accountId: $accountId')
@@ -391,11 +390,11 @@ class ExpenseCompanion extends UpdateCompanion<ExpenseData> {
   }
 }
 
-class $ExpenseTable extends Expense with TableInfo<$ExpenseTable, ExpenseData> {
+class $ExpensesTable extends Expenses with TableInfo<$ExpensesTable, Expense> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $ExpenseTable(this.attachedDatabase, [this._alias]);
+  $ExpensesTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
@@ -414,11 +413,11 @@ class $ExpenseTable extends Expense with TableInfo<$ExpenseTable, ExpenseData> {
   @override
   List<GeneratedColumn> get $columns => [id, value, accountId];
   @override
-  String get aliasedName => _alias ?? 'expense';
+  String get aliasedName => _alias ?? 'expenses';
   @override
-  String get actualTableName => 'expense';
+  String get actualTableName => 'expenses';
   @override
-  VerificationContext validateIntegrity(Insertable<ExpenseData> instance,
+  VerificationContext validateIntegrity(Insertable<Expense> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -445,9 +444,9 @@ class $ExpenseTable extends Expense with TableInfo<$ExpenseTable, ExpenseData> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  ExpenseData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Expense map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ExpenseData(
+    return Expense(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       value: attachedDatabase.options.types
@@ -458,16 +457,16 @@ class $ExpenseTable extends Expense with TableInfo<$ExpenseTable, ExpenseData> {
   }
 
   @override
-  $ExpenseTable createAlias(String alias) {
-    return $ExpenseTable(attachedDatabase, alias);
+  $ExpensesTable createAlias(String alias) {
+    return $ExpensesTable(attachedDatabase, alias);
   }
 }
 
-class IncomeData extends DataClass implements Insertable<IncomeData> {
+class Income extends DataClass implements Insertable<Income> {
   final String id;
   final int value;
   final String accountId;
-  const IncomeData(
+  const Income(
       {required this.id, required this.value, required this.accountId});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -478,18 +477,18 @@ class IncomeData extends DataClass implements Insertable<IncomeData> {
     return map;
   }
 
-  IncomeCompanion toCompanion(bool nullToAbsent) {
-    return IncomeCompanion(
+  IncomesCompanion toCompanion(bool nullToAbsent) {
+    return IncomesCompanion(
       id: Value(id),
       value: Value(value),
       accountId: Value(accountId),
     );
   }
 
-  factory IncomeData.fromJson(Map<String, dynamic> json,
+  factory Income.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return IncomeData(
+    return Income(
       id: serializer.fromJson<String>(json['id']),
       value: serializer.fromJson<int>(json['value']),
       accountId: serializer.fromJson<String>(json['accountId']),
@@ -505,15 +504,14 @@ class IncomeData extends DataClass implements Insertable<IncomeData> {
     };
   }
 
-  IncomeData copyWith({String? id, int? value, String? accountId}) =>
-      IncomeData(
+  Income copyWith({String? id, int? value, String? accountId}) => Income(
         id: id ?? this.id,
         value: value ?? this.value,
         accountId: accountId ?? this.accountId,
       );
   @override
   String toString() {
-    return (StringBuffer('IncomeData(')
+    return (StringBuffer('Income(')
           ..write('id: $id, ')
           ..write('value: $value, ')
           ..write('accountId: $accountId')
@@ -526,29 +524,29 @@ class IncomeData extends DataClass implements Insertable<IncomeData> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is IncomeData &&
+      (other is Income &&
           other.id == this.id &&
           other.value == this.value &&
           other.accountId == this.accountId);
 }
 
-class IncomeCompanion extends UpdateCompanion<IncomeData> {
+class IncomesCompanion extends UpdateCompanion<Income> {
   final Value<String> id;
   final Value<int> value;
   final Value<String> accountId;
-  const IncomeCompanion({
+  const IncomesCompanion({
     this.id = const Value.absent(),
     this.value = const Value.absent(),
     this.accountId = const Value.absent(),
   });
-  IncomeCompanion.insert({
+  IncomesCompanion.insert({
     required String id,
     required int value,
     required String accountId,
   })  : id = Value(id),
         value = Value(value),
         accountId = Value(accountId);
-  static Insertable<IncomeData> custom({
+  static Insertable<Income> custom({
     Expression<String>? id,
     Expression<int>? value,
     Expression<String>? accountId,
@@ -560,9 +558,9 @@ class IncomeCompanion extends UpdateCompanion<IncomeData> {
     });
   }
 
-  IncomeCompanion copyWith(
+  IncomesCompanion copyWith(
       {Value<String>? id, Value<int>? value, Value<String>? accountId}) {
-    return IncomeCompanion(
+    return IncomesCompanion(
       id: id ?? this.id,
       value: value ?? this.value,
       accountId: accountId ?? this.accountId,
@@ -586,7 +584,7 @@ class IncomeCompanion extends UpdateCompanion<IncomeData> {
 
   @override
   String toString() {
-    return (StringBuffer('IncomeCompanion(')
+    return (StringBuffer('IncomesCompanion(')
           ..write('id: $id, ')
           ..write('value: $value, ')
           ..write('accountId: $accountId')
@@ -595,11 +593,11 @@ class IncomeCompanion extends UpdateCompanion<IncomeData> {
   }
 }
 
-class $IncomeTable extends Income with TableInfo<$IncomeTable, IncomeData> {
+class $IncomesTable extends Incomes with TableInfo<$IncomesTable, Income> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $IncomeTable(this.attachedDatabase, [this._alias]);
+  $IncomesTable(this.attachedDatabase, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
@@ -618,11 +616,11 @@ class $IncomeTable extends Income with TableInfo<$IncomeTable, IncomeData> {
   @override
   List<GeneratedColumn> get $columns => [id, value, accountId];
   @override
-  String get aliasedName => _alias ?? 'income';
+  String get aliasedName => _alias ?? 'incomes';
   @override
-  String get actualTableName => 'income';
+  String get actualTableName => 'incomes';
   @override
-  VerificationContext validateIntegrity(Insertable<IncomeData> instance,
+  VerificationContext validateIntegrity(Insertable<Income> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -649,9 +647,9 @@ class $IncomeTable extends Income with TableInfo<$IncomeTable, IncomeData> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  IncomeData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  Income map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return IncomeData(
+    return Income(
       id: attachedDatabase.options.types
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       value: attachedDatabase.options.types
@@ -662,20 +660,21 @@ class $IncomeTable extends Income with TableInfo<$IncomeTable, IncomeData> {
   }
 
   @override
-  $IncomeTable createAlias(String alias) {
-    return $IncomeTable(attachedDatabase, alias);
+  $IncomesTable createAlias(String alias) {
+    return $IncomesTable(attachedDatabase, alias);
   }
 }
 
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
-  late final $AccountTable account = $AccountTable(this);
-  late final $ExpenseTable expense = $ExpenseTable(this);
-  late final $IncomeTable income = $IncomeTable(this);
+  late final $AccountsTable accounts = $AccountsTable(this);
+  late final $ExpensesTable expenses = $ExpensesTable(this);
+  late final $IncomesTable incomes = $IncomesTable(this);
+  late final AccountsDao accountsDao = AccountsDao(this as AppDatabase);
   @override
   Iterable<TableInfo<Table, dynamic>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [account, expense, income];
+      [accounts, expenses, incomes];
 }
