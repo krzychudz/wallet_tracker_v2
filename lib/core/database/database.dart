@@ -16,7 +16,11 @@ part 'database.g.dart';
   daos: [AccountsDao],
 )
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_openConnection());
+  static final AppDatabase _instance = AppDatabase._();
+
+  AppDatabase._() : super(_openConnection());
+
+  factory AppDatabase() => _instance;
 
   @override
   int get schemaVersion => 1;
