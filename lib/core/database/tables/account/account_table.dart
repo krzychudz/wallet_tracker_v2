@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-class Accounts extends Table {
+class AccountsTable extends Table {
   TextColumn get id => text()();
   IntColumn get balance => integer().check(balance.isBiggerOrEqualValue(0))();
   TextColumn get currencyCode => text()();

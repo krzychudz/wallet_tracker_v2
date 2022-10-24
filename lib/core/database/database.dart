@@ -12,7 +12,7 @@ import 'package:wallet_tracker_v2/core/database/tables/income/income_table.dart'
 part 'database.g.dart';
 
 @DriftDatabase(
-  tables: [Accounts, Expenses, Incomes],
+  tables: [AccountsTable, ExpensesTable, IncomesTable],
   daos: [AccountsDao],
 )
 class AppDatabase extends _$AppDatabase {

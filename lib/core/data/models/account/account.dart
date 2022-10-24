@@ -7,9 +7,9 @@ part 'account.g.dart';
 class Account with _$Account {
   factory Account({
     required String id,
-    @Default(0) int balance,
-    required String currency,
     required String name,
+    required String currencyCode,
+    @Default(0) int balance,
   }) = _Account;
 
   factory Account.fromJson(Map<String, dynamic> json) =>

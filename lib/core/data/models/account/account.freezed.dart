@@ -21,9 +21,9 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Account {
   String get id => throw _privateConstructorUsedError;
-  int get balance => throw _privateConstructorUsedError;
-  String get currency => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get currencyCode => throw _privateConstructorUsedError;
+  int get balance => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $AccountCopyWith<$Res> {
   factory $AccountCopyWith(Account value, $Res Function(Account) then) =
       _$AccountCopyWithImpl<$Res, Account>;
   @useResult
-  $Res call({String id, int balance, String currency, String name});
+  $Res call({String id, String name, String currencyCode, int balance});
 }
 
 /// @nodoc
@@ -52,27 +52,27 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
   @override
   $Res call({
     Object? id = null,
-    Object? balance = null,
-    Object? currency = null,
     Object? name = null,
+    Object? currencyCode = null,
+    Object? balance = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      balance: null == balance
-          ? _value.balance
-          : balance // ignore: cast_nullable_to_non_nullable
-              as int,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      currencyCode: null == currencyCode
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      balance: null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -84,7 +84,7 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       __$$_AccountCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, int balance, String currency, String name});
+  $Res call({String id, String name, String currencyCode, int balance});
 }
 
 /// @nodoc
@@ -98,27 +98,27 @@ class __$$_AccountCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? balance = null,
-    Object? currency = null,
     Object? name = null,
+    Object? currencyCode = null,
+    Object? balance = null,
   }) {
     return _then(_$_Account(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      balance: null == balance
-          ? _value.balance
-          : balance // ignore: cast_nullable_to_non_nullable
-              as int,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      currencyCode: null == currencyCode
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      balance: null == balance
+          ? _value.balance
+          : balance // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -128,9 +128,9 @@ class __$$_AccountCopyWithImpl<$Res>
 class _$_Account implements _Account {
   _$_Account(
       {required this.id,
-      this.balance = 0,
-      required this.currency,
-      required this.name});
+      required this.name,
+      required this.currencyCode,
+      this.balance = 0});
 
   factory _$_Account.fromJson(Map<String, dynamic> json) =>
       _$$_AccountFromJson(json);
@@ -138,16 +138,16 @@ class _$_Account implements _Account {
   @override
   final String id;
   @override
+  final String name;
+  @override
+  final String currencyCode;
+  @override
   @JsonKey()
   final int balance;
-  @override
-  final String currency;
-  @override
-  final String name;
 
   @override
   String toString() {
-    return 'Account(id: $id, balance: $balance, currency: $currency, name: $name)';
+    return 'Account(id: $id, name: $name, currencyCode: $currencyCode, balance: $balance)';
   }
 
   @override
@@ -156,15 +156,15 @@ class _$_Account implements _Account {
         (other.runtimeType == runtimeType &&
             other is _$_Account &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.balance, balance) || other.balance == balance) &&
-            (identical(other.currency, currency) ||
-                other.currency == currency) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.currencyCode, currencyCode) ||
+                other.currencyCode == currencyCode) &&
+            (identical(other.balance, balance) || other.balance == balance));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, balance, currency, name);
+  int get hashCode => Object.hash(runtimeType, id, name, currencyCode, balance);
 
   @JsonKey(ignore: true)
   @override
@@ -183,20 +183,20 @@ class _$_Account implements _Account {
 abstract class _Account implements Account {
   factory _Account(
       {required final String id,
-      final int balance,
-      required final String currency,
-      required final String name}) = _$_Account;
+      required final String name,
+      required final String currencyCode,
+      final int balance}) = _$_Account;
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
 
   @override
   String get id;
   @override
-  int get balance;
-  @override
-  String get currency;
-  @override
   String get name;
+  @override
+  String get currencyCode;
+  @override
+  int get balance;
   @override
   @JsonKey(ignore: true)
   _$$_AccountCopyWith<_$_Account> get copyWith =>

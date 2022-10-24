@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-class Expenses extends Table {
+class ExpensesTable extends Table {
   TextColumn get id => text()();
   IntColumn get value => integer()();
   TextColumn get accountId => text()();
