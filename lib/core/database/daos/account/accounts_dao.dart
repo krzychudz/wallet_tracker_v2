@@ -22,9 +22,13 @@ class AccountsDao extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  void insertSingle(Account account) {
+  Future<Account> insertSingle(Account account) async {
     final accountTableCompanion = account.toAccountTableData();
-    into(accountsTable).insert(accountTableCompanion);
+    final accountsTableData = await into(accountsTable).insertReturning(
+      accountTableCompanion,
+      mode: InsertMode.insertOrReplace,
+    );
+    return accountsTableData.toAccount();
   }
 
   @override
