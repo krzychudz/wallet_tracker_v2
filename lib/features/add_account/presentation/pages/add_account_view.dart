@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_cubit.dart';
 
 class AddAccountView extends StatelessWidget {
   const AddAccountView({super.key});
@@ -26,15 +28,19 @@ class AddAccountView extends StatelessWidget {
             UnderlineTextField(
               hintText: 'add_account_enter_account_name'.tr(),
               textInputAction: TextInputAction.next,
+              onChange: (value) =>
+                  context.read<AddAccountCubit>().onNameChanged(value),
             ),
             const SizedBox(height: 16),
             UnderlineTextField(
               hintText: 'add_account_enter_account_value'.tr(),
               keyboardType: TextInputType.number,
+              onChange: (value) =>
+                  context.read<AddAccountCubit>().onValueChanged(value),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () => print("clcked"),
+              onPressed: () => context.read<AddAccountCubit>().onSubmit(),
               child: const Text('add_account_create_account').tr(),
             )
           ],

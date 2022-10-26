@@ -6,11 +6,13 @@ class UnderlineTextField extends StatelessWidget {
     required this.hintText,
     this.keyboardType,
     this.textInputAction = TextInputAction.done,
+    this.onChange,
   });
 
   final String hintText;
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
+  final Function(String)? onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class UnderlineTextField extends StatelessWidget {
       ),
       keyboardType: keyboardType,
       textInputAction: textInputAction,
+      onChanged: onChange,
     );
   }
 }

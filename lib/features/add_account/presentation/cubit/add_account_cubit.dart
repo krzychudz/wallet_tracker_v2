@@ -28,8 +28,8 @@ class AddAccountCubit extends Cubit<AddAccountState> {
     final accountCreateResult = await addAccount(account: accountParams);
 
     accountCreateResult.fold(
-      (error) => null,
-      (account) => null,
+      (error) => print("error $error"),
+      (account) => print("account: $account"),
     );
   }
 }

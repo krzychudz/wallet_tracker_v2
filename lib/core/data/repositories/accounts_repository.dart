@@ -22,8 +22,8 @@ class AccountRepository extends AccountRepositoryInterface {
       );
       final newAccount = await _accountsDaoInterface.insertSingle(accountData);
       return Right(newAccount);
-    } catch (_) {
-      return Left(DatabaseInsertFailure('Account insert failure'));
+    } catch (e) {
+      return Left(DatabaseInsertFailure('Account insert failure: $e'));
     }
   }
 
