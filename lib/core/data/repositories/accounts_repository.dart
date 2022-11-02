@@ -32,4 +32,8 @@ class AccountRepository extends AccountRepositoryInterface {
     // TODO: implement getAccounts
     throw UnimplementedError();
   }
+
+  @override
+  Stream<List<Account>> watchAll() =>
+      _accountsDaoInterface.watchAll().asBroadcastStream();
 }

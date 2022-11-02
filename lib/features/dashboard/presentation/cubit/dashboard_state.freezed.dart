@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DashboardState _$DashboardStateFromJson(Map<String, dynamic> json) {
-  return _DashboardState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$DashboardState {
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  List<Account> get accounts => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DashboardStateCopyWith<DashboardState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -28,6 +28,8 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
+  @useResult
+  $Res call({List<Account> accounts});
 }
 
 /// @nodoc
@@ -39,13 +41,30 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accounts = null,
+  }) {
+    return _then(_value.copyWith(
+      accounts: null == accounts
+          ? _value.accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<Account>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_DashboardStateCopyWith<$Res> {
+abstract class _$$_DashboardStateCopyWith<$Res>
+    implements $DashboardStateCopyWith<$Res> {
   factory _$$_DashboardStateCopyWith(
           _$_DashboardState value, $Res Function(_$_DashboardState) then) =
       __$$_DashboardStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Account> accounts});
 }
 
 /// @nodoc
@@ -55,42 +74,66 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   __$$_DashboardStateCopyWithImpl(
       _$_DashboardState _value, $Res Function(_$_DashboardState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? accounts = null,
+  }) {
+    return _then(_$_DashboardState(
+      accounts: null == accounts
+          ? _value._accounts
+          : accounts // ignore: cast_nullable_to_non_nullable
+              as List<Account>,
+    ));
+  }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_DashboardState implements _DashboardState {
-  _$_DashboardState();
 
-  factory _$_DashboardState.fromJson(Map<String, dynamic> json) =>
-      _$$_DashboardStateFromJson(json);
+class _$_DashboardState implements _DashboardState {
+  _$_DashboardState({final List<Account> accounts = const []})
+      : _accounts = accounts;
+
+  final List<Account> _accounts;
+  @override
+  @JsonKey()
+  List<Account> get accounts {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_accounts);
+  }
 
   @override
   String toString() {
-    return 'DashboardState()';
+    return 'DashboardState(accounts: $accounts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DashboardState);
+        (other.runtimeType == runtimeType &&
+            other is _$_DashboardState &&
+            const DeepCollectionEquality().equals(other._accounts, _accounts));
   }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_accounts));
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_DashboardStateToJson(
-      this,
-    );
-  }
+  @pragma('vm:prefer-inline')
+  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
+      __$$_DashboardStateCopyWithImpl<_$_DashboardState>(this, _$identity);
 }
 
 abstract class _DashboardState implements DashboardState {
-  factory _DashboardState() = _$_DashboardState;
+  factory _DashboardState({final List<Account> accounts}) = _$_DashboardState;
 
-  factory _DashboardState.fromJson(Map<String, dynamic> json) =
-      _$_DashboardState.fromJson;
+  @override
+  List<Account> get accounts;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
