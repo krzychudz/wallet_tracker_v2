@@ -19,6 +19,10 @@ mixin _$AddAccountState {
   String get accountName => throw _privateConstructorUsedError;
   int get initialValue => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
+  AccountCreationState get accountCreationState =>
+      throw _privateConstructorUsedError;
+  Account? get accountData => throw _privateConstructorUsedError;
+  Failure? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AddAccountStateCopyWith<AddAccountState> get copyWith =>
@@ -31,7 +35,15 @@ abstract class $AddAccountStateCopyWith<$Res> {
           AddAccountState value, $Res Function(AddAccountState) then) =
       _$AddAccountStateCopyWithImpl<$Res, AddAccountState>;
   @useResult
-  $Res call({String accountName, int initialValue, String currency});
+  $Res call(
+      {String accountName,
+      int initialValue,
+      String currency,
+      AccountCreationState accountCreationState,
+      Account? accountData,
+      Failure? failure});
+
+  $AccountCopyWith<$Res>? get accountData;
 }
 
 /// @nodoc
@@ -50,6 +62,9 @@ class _$AddAccountStateCopyWithImpl<$Res, $Val extends AddAccountState>
     Object? accountName = null,
     Object? initialValue = null,
     Object? currency = null,
+    Object? accountCreationState = null,
+    Object? accountData = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
       accountName: null == accountName
@@ -64,7 +79,31 @@ class _$AddAccountStateCopyWithImpl<$Res, $Val extends AddAccountState>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
+      accountCreationState: null == accountCreationState
+          ? _value.accountCreationState
+          : accountCreationState // ignore: cast_nullable_to_non_nullable
+              as AccountCreationState,
+      accountData: freezed == accountData
+          ? _value.accountData
+          : accountData // ignore: cast_nullable_to_non_nullable
+              as Account?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AccountCopyWith<$Res>? get accountData {
+    if (_value.accountData == null) {
+      return null;
+    }
+
+    return $AccountCopyWith<$Res>(_value.accountData!, (value) {
+      return _then(_value.copyWith(accountData: value) as $Val);
+    });
   }
 }
 
@@ -76,7 +115,16 @@ abstract class _$$_AddAccountStateCopyWith<$Res>
       __$$_AddAccountStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String accountName, int initialValue, String currency});
+  $Res call(
+      {String accountName,
+      int initialValue,
+      String currency,
+      AccountCreationState accountCreationState,
+      Account? accountData,
+      Failure? failure});
+
+  @override
+  $AccountCopyWith<$Res>? get accountData;
 }
 
 /// @nodoc
@@ -93,6 +141,9 @@ class __$$_AddAccountStateCopyWithImpl<$Res>
     Object? accountName = null,
     Object? initialValue = null,
     Object? currency = null,
+    Object? accountCreationState = null,
+    Object? accountData = freezed,
+    Object? failure = freezed,
   }) {
     return _then(_$_AddAccountState(
       accountName: null == accountName
@@ -107,6 +158,18 @@ class __$$_AddAccountStateCopyWithImpl<$Res>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
+      accountCreationState: null == accountCreationState
+          ? _value.accountCreationState
+          : accountCreationState // ignore: cast_nullable_to_non_nullable
+              as AccountCreationState,
+      accountData: freezed == accountData
+          ? _value.accountData
+          : accountData // ignore: cast_nullable_to_non_nullable
+              as Account?,
+      failure: freezed == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure?,
     ));
   }
 }
@@ -115,7 +178,12 @@ class __$$_AddAccountStateCopyWithImpl<$Res>
 
 class _$_AddAccountState implements _AddAccountState {
   _$_AddAccountState(
-      {this.accountName = "", this.initialValue = 0, this.currency = "PLN"});
+      {this.accountName = "",
+      this.initialValue = 0,
+      this.currency = "PLN",
+      this.accountCreationState = AccountCreationState.idle,
+      this.accountData,
+      this.failure});
 
   @override
   @JsonKey()
@@ -126,10 +194,17 @@ class _$_AddAccountState implements _AddAccountState {
   @override
   @JsonKey()
   final String currency;
+  @override
+  @JsonKey()
+  final AccountCreationState accountCreationState;
+  @override
+  final Account? accountData;
+  @override
+  final Failure? failure;
 
   @override
   String toString() {
-    return 'AddAccountState(accountName: $accountName, initialValue: $initialValue, currency: $currency)';
+    return 'AddAccountState(accountName: $accountName, initialValue: $initialValue, currency: $currency, accountCreationState: $accountCreationState, accountData: $accountData, failure: $failure)';
   }
 
   @override
@@ -142,12 +217,17 @@ class _$_AddAccountState implements _AddAccountState {
             (identical(other.initialValue, initialValue) ||
                 other.initialValue == initialValue) &&
             (identical(other.currency, currency) ||
-                other.currency == currency));
+                other.currency == currency) &&
+            (identical(other.accountCreationState, accountCreationState) ||
+                other.accountCreationState == accountCreationState) &&
+            (identical(other.accountData, accountData) ||
+                other.accountData == accountData) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, accountName, initialValue, currency);
+  int get hashCode => Object.hash(runtimeType, accountName, initialValue,
+      currency, accountCreationState, accountData, failure);
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +240,10 @@ abstract class _AddAccountState implements AddAccountState {
   factory _AddAccountState(
       {final String accountName,
       final int initialValue,
-      final String currency}) = _$_AddAccountState;
+      final String currency,
+      final AccountCreationState accountCreationState,
+      final Account? accountData,
+      final Failure? failure}) = _$_AddAccountState;
 
   @override
   String get accountName;
@@ -168,6 +251,12 @@ abstract class _AddAccountState implements AddAccountState {
   int get initialValue;
   @override
   String get currency;
+  @override
+  AccountCreationState get accountCreationState;
+  @override
+  Account? get accountData;
+  @override
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$$_AddAccountStateCopyWith<_$_AddAccountState> get copyWith =>

@@ -19,6 +19,8 @@ class AddAccountCubit extends Cubit<AddAccountState> {
   }
 
   void onSubmit() async {
+    emit(state.copyWith(accountCreationState: AccountCreationState.inProgress));
+
     final accountParams = AccountParams(
       name: state.accountName,
       currency: "PLN",
@@ -28,8 +30,8 @@ class AddAccountCubit extends Cubit<AddAccountState> {
     final accountCreateResult = await addAccount(account: accountParams);
 
     accountCreateResult.fold(
-      (error) => print("error $error"),
-      (account) => print("account: $account"),
+      (error) => emit(state.copyWith(failure: error)),
+      (account) => emit(state.copyWith(accountData: account)),
     );
   }
 }
