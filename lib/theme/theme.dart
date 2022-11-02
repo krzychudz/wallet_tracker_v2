@@ -3,6 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return Theme.of(context).copyWith(
+    colorScheme: ColorScheme.fromSwatch().copyWith(
+      secondary: Colors.black,
+      primary: Colors.white,
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: UnderlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.black,
+        ),
+      ),
+    ),
     primaryColor: Colors.white,
     backgroundColor: const Color(0xffE5E5E5),
     textTheme: TextTheme(
@@ -24,9 +35,6 @@ ThemeData lightThemeData(BuildContext context) {
         color: Colors.black,
         fontSize: 14.0,
       ),
-    ),
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      secondary: Colors.black,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(

@@ -21,6 +21,8 @@ class AddAccountCubit extends Cubit<AddAccountState> {
   void onSubmit() async {
     emit(state.copyWith(accountCreationState: AccountCreationState.inProgress));
 
+    await Future.delayed(Duration(seconds: 3));
+
     final accountParams = AccountParams(
       name: state.accountName,
       currency: "PLN",
