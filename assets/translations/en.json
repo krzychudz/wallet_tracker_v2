@@ -3,5 +3,8 @@
     "add_account_info": "Add a new account",
     "add_account_enter_account_name": "Enter an account name",
     "add_account_enter_account_value": "Enter an initial value",
-    "add_account_create_account": "Create account"
+    "add_account_create_account": "Create account",
+    "dashboard_accounts_label": "ACCOUNTS",
+    "dashboard_accounts_add": "Add Account",
+    "dashboard_accounts_history": "History"
  }

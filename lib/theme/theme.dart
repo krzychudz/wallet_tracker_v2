@@ -21,6 +21,11 @@ ThemeData lightThemeData(BuildContext context) {
         color: Colors.black,
         fontSize: 16.0,
       ),
+      headline2: GoogleFonts.montserrat(
+        color: Colors.black,
+        fontSize: 14.0,
+        fontWeight: FontWeight.w600,
+      ),
       bodyText1: GoogleFonts.montserrat(
         color: Colors.black,
         fontSize: 12.0,
