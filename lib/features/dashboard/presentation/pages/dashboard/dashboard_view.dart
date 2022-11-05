@@ -22,7 +22,7 @@ class DashboardView extends StatelessWidget {
             itemCount: accounts.length,
             itemBuilder: (context, index) => Text(
               accounts[index].name,
-              style: TextStyle(fontSize: 25),
+              style: const TextStyle(fontSize: 25),
             ),
           );
         },
