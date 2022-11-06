@@ -6,5 +6,8 @@
     "add_account_create_account": "Create account",
     "dashboard_accounts_label": "ACCOUNTS",
     "dashboard_accounts_add": "Add Account",
-    "dashboard_accounts_history": "History"
+    "dashboard_accounts_history": "History",
+    "dashboard_accounts_total_balance": "Total balance",
+    "app_name_label": "Wallet\nTracker"
+
  }
