@@ -8,6 +8,7 @@
     "dashboard_accounts_add": "Add Account",
     "dashboard_accounts_history": "History",
     "dashboard_accounts_total_balance": "Total balance",
-    "app_name_label": "Wallet\nTracker"
-
+    "app_name_label": "Wallet\nTracker",
+    "add_account_success_info": "The account {} has been created",
+    "add_account_error_info": "The account has not been created. Try again!"
  }

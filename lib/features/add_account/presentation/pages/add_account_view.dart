@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart'
+    hide ModularWatchExtension;
+import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
 import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.dart';
@@ -16,36 +19,54 @@ class AddAccountView extends StatelessWidget {
       appBar: MainAppBar(
         title: 'add_account_title'.tr(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView(
-          children: [
-            const SizedBox(height: 16),
-            Text(
-              'add_account_info',
-              style: Theme.of(context).textTheme.headline1,
-              textAlign: TextAlign.center,
-            ).tr(),
-            const SizedBox(height: 16),
-            UnderlineTextField(
-              hintText: 'add_account_enter_account_name'.tr(),
-              textInputAction: TextInputAction.next,
-              onChange: (value) =>
-                  context.read<AddAccountCubit>().onNameChanged(value),
-            ),
-            const SizedBox(height: 16),
-            UnderlineTextField(
-              hintText: 'add_account_enter_account_value'.tr(),
-              keyboardType: TextInputType.number,
-              onChange: (value) =>
-                  context.read<AddAccountCubit>().onValueChanged(value),
-            ),
-            const SizedBox(height: 24),
-            const SaveButton()
-          ],
+      body: BlocListener<AddAccountCubit, AddAccountState>(
+        listenWhen: (previous, current) =>
+            previous.accountCreationState != current.accountCreationState,
+        listener: (context, state) => onCreationStateChanged(state, context),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: ListView(
+            children: [
+              const SizedBox(height: 16),
+              Text(
+                'add_account_info',
+                style: Theme.of(context).textTheme.headline1,
+                textAlign: TextAlign.center,
+              ).tr(),
+              const SizedBox(height: 16),
+              UnderlineTextField(
+                hintText: 'add_account_enter_account_name'.tr(),
+                textInputAction: TextInputAction.next,
+                onChange: (value) =>
+                    context.read<AddAccountCubit>().onNameChanged(value),
+              ),
+              const SizedBox(height: 16),
+              UnderlineTextField(
+                hintText: 'add_account_enter_account_value'.tr(),
+                keyboardType: TextInputType.number,
+                onChange: (value) =>
+                    context.read<AddAccountCubit>().onValueChanged(value),
+              ),
+              const SizedBox(height: 24),
+              const SaveButton()
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void onCreationStateChanged(AddAccountState state, BuildContext context) {
+    if (state.accountCreationState == AccountCreationState.success) {
+      context.showSnackbar(
+          'add_account_success_info'.tr(args: [state.accountData?.name ?? '']));
+      Modular.to.pop();
+    } else if (state.accountCreationState == AccountCreationState.failure) {
+      context.showSnackbar(
+        'add_account_error_info'.tr(),
+        backgroundColor: const Color(0xffff0033),
+      );
+    }
   }
 }
 
@@ -57,15 +78,16 @@ class SaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddAccountCubit, AddAccountState>(
-        buildWhen: (previous, current) =>
-            previous.accountCreationState != current.accountCreationState,
-        builder: (context, state) {
-          return SubmitButton(
-            label: tr('add_account_create_account'),
-            onPressed: () => context.read<AddAccountCubit>().onSubmit(),
-            inProgress:
-                state.accountCreationState == AccountCreationState.inProgress,
-          );
-        });
+      buildWhen: (previous, current) =>
+          previous.accountCreationState != current.accountCreationState,
+      builder: (context, state) {
+        return SubmitButton(
+          label: tr('add_account_create_account'),
+          onPressed: () => context.read<AddAccountCubit>().onSubmit(),
+          inProgress:
+              state.accountCreationState == AccountCreationState.inProgress,
+        );
+      },
+    );
   }
 }

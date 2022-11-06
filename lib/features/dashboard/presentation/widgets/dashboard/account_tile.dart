@@ -16,7 +16,6 @@ class AccountTile extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         child: Row(
