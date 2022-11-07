@@ -19,13 +19,34 @@ class AccountTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              account.name,
-              style: Theme.of(context).textTheme.headline3,
-            ),
-            Column(
+            AccountInfoSection(account: account),
+            const Spacer(),
+            AccountBalanceSection(account: account)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AccountBalanceSection extends StatelessWidget {
+  const AccountBalanceSection({
+    Key? key,
+    required this.account,
+  }) : super(key: key);
+
+  final Account account;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Row(
+        children: [
+          const Spacer(),
+          Expanded(
+            flex: 4,
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -41,9 +62,29 @@ class AccountTile extends StatelessWidget {
                       ?.copyWith(fontSize: 11),
                 ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AccountInfoSection extends StatelessWidget {
+  const AccountInfoSection({
+    Key? key,
+    required this.account,
+  }) : super(key: key);
+
+  final Account account;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 1,
+      child: Text(
+        account.name,
+        style: Theme.of(context).textTheme.headline3,
       ),
     );
   }
