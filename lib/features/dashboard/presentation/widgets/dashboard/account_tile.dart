@@ -6,24 +6,29 @@ class AccountTile extends StatelessWidget {
   const AccountTile({
     Key? key,
     required this.account,
+    required this.onTap,
   }) : super(key: key);
 
   final Account account;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        child: Row(
-          children: [
-            AccountInfoSection(account: account),
-            const Spacer(),
-            AccountBalanceSection(account: account)
-          ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          child: Row(
+            children: [
+              AccountInfoSection(account: account),
+              const Spacer(),
+              AccountBalanceSection(account: account)
+            ],
+          ),
         ),
       ),
     );
