@@ -36,4 +36,13 @@ class AccountsDao extends DatabaseAccessor<AppDatabase>
       select(accountsTable).watch().map((accountsTableData) => accountsTableData
           .map((accountTableData) => accountTableData.toAccount())
           .toList());
+
+  @override
+  Future<Account?> getAccountById(String accountId) async {
+    final query = select(accountsTable)
+      ..where((accountTableData) => accountTableData.id.equals(accountId));
+
+    final data = await query.getSingleOrNull();
+    return data?.toAccount();
+  }
 }
