@@ -10,5 +10,11 @@
     "dashboard_accounts_total_balance": "Total balance",
     "app_name_label": "Wallet\nTracker",
     "add_account_success_info": "The account {} has been created",
-    "add_account_error_info": "The account has not been created. Try again!"
+    "add_account_error_info": "The account has not been created. Try again!",
+    "account_details_app_bar_title": "{} Details",
+    "account_details_label": "Account Details",
+    "account_details_remove_account": "Remove Account",
+    "account_details_name": "Name:",
+    "account_details_balance": "Balance:",
+    "account_details_currency_code": "Currency Code:"
  }

@@ -9,5 +9,14 @@ class AccountDetailsCubit extends Cubit<AccountDetailsState> {
 
   final GetAccount _getAccount;
 
-  void getAccountData(String accountId) async {}
+  void getAccountData(String accountId) async {
+    final accountData = await _getAccount(accountId: accountId);
+
+    accountData.fold(
+      (l) => null,
+      (account) => emit(
+        state.copyWith(account: account),
+      ),
+    );
+  }
 }
