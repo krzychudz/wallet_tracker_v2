@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/domain/usecases/account/add_account.dart';
 import 'package:wallet_tracker_v2/core/domain/usecases/account/get_account.dart';
+import 'package:wallet_tracker_v2/core/domain/usecases/account/remove_account.dart';
 import 'package:wallet_tracker_v2/core/domain/usecases/account/watch_accounts.dart';
 
 class DIUseCasesModule extends Module {
@@ -18,5 +19,9 @@ class DIUseCasesModule extends Module {
           (i) => GetAccount(i()),
           export: true,
         ),
+        Bind.lazySingleton<RemoveAccount>(
+          (i) => RemoveAccount(i()),
+          export: true,
+        )
       ];
 }

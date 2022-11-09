@@ -48,4 +48,15 @@ class AccountRepository extends AccountRepositoryInterface {
 
     return Right(account);
   }
+
+  @override
+  Future<Either<Failure, int>> removeAccountById(String accountId) async {
+    try {
+      final numberOfDeletedRows =
+          await _accountsDaoInterface.removeAccountById(accountId);
+      return Right(numberOfDeletedRows);
+    } catch (e) {
+      return Left(DatabaseRemoveFailure('Account delete failure: $e'));
+    }
+  }
 }

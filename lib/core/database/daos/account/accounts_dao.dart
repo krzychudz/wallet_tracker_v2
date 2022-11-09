@@ -45,4 +45,12 @@ class AccountsDao extends DatabaseAccessor<AppDatabase>
     final data = await query.getSingleOrNull();
     return data?.toAccount();
   }
+
+  @override
+  Future<int> removeAccountById(String accountId) async {
+    final query = delete(accountsTable)
+      ..where((accountTableData) => accountTableData.id.equals(accountId));
+    final numberOfDeleteRows = await query.go();
+    return numberOfDeleteRows;
+  }
 }

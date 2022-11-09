@@ -10,3 +10,7 @@ class DatabaseInsertFailure extends Failure {
 class DatabaseNoElementFound extends Failure {
   DatabaseNoElementFound(super.message);
 }
+
+class DatabaseRemoveFailure extends Failure {
+  DatabaseRemoveFailure(super.message);
+}

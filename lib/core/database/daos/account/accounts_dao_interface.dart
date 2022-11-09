@@ -5,5 +5,6 @@ abstract class AccountsDaoInterface {
 
   Future<Account> insertSingle(Account account);
   Future<Account?> getAccountById(String accountId);
+  Future<int> removeAccountById(String accountId);
   Future<List<Account>> getAll();
 }
