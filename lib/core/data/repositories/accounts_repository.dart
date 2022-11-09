@@ -50,7 +50,8 @@ class AccountRepository extends AccountRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, int>> removeAccountById(String accountId) async {
+  Future<Either<DatabaseRemoveFailure, int>> removeAccountById(
+      String accountId) async {
     try {
       final numberOfDeletedRows =
           await _accountsDaoInterface.removeAccountById(accountId);

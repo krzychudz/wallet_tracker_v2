@@ -7,7 +7,8 @@ class RemoveAccount {
 
   final AccountRepositoryInterface _accountRepository;
 
-  Future<Either<Failure, int>> call({required String accountId}) async {
+  Future<Either<DatabaseRemoveFailure, int>> call(
+      {required String accountId}) async {
     return _accountRepository.removeAccountById(accountId);
   }
 }

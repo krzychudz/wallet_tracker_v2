@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart'
+    hide ModularWatchExtension;
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/divider/primary_divider.dart';
@@ -8,13 +10,18 @@ import 'package:wallet_tracker_v2/core/widgets/header/app_header.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_cubit.dart';
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_state.dart';
+import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
 
 class AccountDetailsView extends StatelessWidget {
   const AccountDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AccountDetailsCubit, AccountDetailsState>(
+    return BlocConsumer<AccountDetailsCubit, AccountDetailsState>(
+      listenWhen: (previous, current) =>
+          previous.accountRemoveStatus != current.accountRemoveStatus,
+      listener: (context, state) =>
+          onAccountRemoveStatusChanged(state, context),
       buildWhen: (previous, current) => previous.account != current.account,
       builder: (context, state) {
         final account = state.account;
@@ -33,13 +40,42 @@ class AccountDetailsView extends StatelessWidget {
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                child:
-                    SubmitButton(label: 'account_details_remove_account'.tr()),
+                child: SubmitButton(
+                  label: 'account_details_remove_account'.tr(),
+                  onPressed: () => context
+                      .read<AccountDetailsCubit>()
+                      .onRemovedAccountPressed(),
+                ),
               ),
             ],
           ),
         );
       },
+    );
+  }
+
+  void onAccountRemoveStatusChanged(
+      AccountDetailsState state, BuildContext context) {
+    final accountRemoveStatus = state.accountRemoveStatus;
+    if (accountRemoveStatus == AccountRemoveStatus.error) {
+      _displayErrorSnackBar(context);
+    } else if (accountRemoveStatus == AccountRemoveStatus.success) {
+      final accountName = state.account?.name ?? '';
+      _displaySuccessSnackBar(context, accountName);
+      Modular.to.pop();
+    }
+  }
+
+  void _displayErrorSnackBar(BuildContext context) {
+    context.showSnackbar(
+      'account_details_remove_account_error_info'.tr(),
+      backgroundColor: const Color(0xffff0033),
+    );
+  }
+
+  void _displaySuccessSnackBar(BuildContext context, String accountName) {
+    context.showSnackbar(
+      'account_details_remove_success_info'.tr(args: [accountName]),
     );
   }
 }

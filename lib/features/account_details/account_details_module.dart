@@ -7,7 +7,7 @@ class AccountDetailsModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind.factory((i) => AccountDetailsCubit(i())),
+        Bind.factory((i) => AccountDetailsCubit(i(), i())),
       ];
 
   @override
