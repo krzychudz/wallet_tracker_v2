@@ -26,12 +26,25 @@ class DashboardView extends StatelessWidget {
             loading: (_) => const ProgressIndicator(),
             data: (data) {
               final accounts = data.accounts;
-              return AccountsList(accounts: accounts);
+              return accounts.isEmpty
+                  ? const EmptyListPlaceholder()
+                  : AccountsList(accounts: accounts);
             },
           );
         },
       ),
     );
+  }
+}
+
+class EmptyListPlaceholder extends StatelessWidget {
+  const EmptyListPlaceholder({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('You have no accounts'));
   }
 }
 
