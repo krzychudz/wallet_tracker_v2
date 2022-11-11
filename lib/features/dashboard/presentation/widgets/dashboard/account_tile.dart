@@ -1,6 +1,31 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
+import 'package:wallet_tracker_v2/features/account_details/account_details_module.dart';
+
+class AccountTileContainer extends StatelessWidget {
+  const AccountTileContainer({
+    Key? key,
+    required this.account,
+  }) : super(key: key);
+
+  final Account account;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 8, left: 8, top: 2),
+      child: AccountTile(
+        account: account,
+        onTap: () => Modular.to.pushNamed(
+          AccountDetailsModule.route,
+          arguments: account.id,
+        ),
+      ),
+    );
+  }
+}
 
 class AccountTile extends StatelessWidget {
   const AccountTile({
