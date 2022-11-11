@@ -18,5 +18,6 @@
     "account_details_balance": "Balance:",
     "account_details_currency_code": "Currency Code:",
     "account_details_remove_account_error_info": "Something went wrong while removing the account. Try again",
-    "account_details_remove_success_info": "The account {} has been removed"
+    "account_details_remove_success_info": "The account {} has been removed",
+    "dashboard_no_accounts_placeholder": "You have no accounts.\nTap Add Account button to create a new one."
  }
