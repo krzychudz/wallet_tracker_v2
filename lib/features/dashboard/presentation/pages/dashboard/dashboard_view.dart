@@ -51,8 +51,9 @@ class AccountsList extends StatelessWidget {
         accounts.isEmpty
             ? const SliverPadding(
                 padding: EdgeInsets.only(right: 8, left: 8, top: 2),
-                sliver:
-                    SliverToBoxAdapter(child: EmptyAccountListPlaceholder()),
+                sliver: SliverToBoxAdapter(
+                  child: EmptyAccountListPlaceholder(),
+                ),
               )
             : SliverList(
                 delegate: SliverChildBuilderDelegate(
