@@ -7,14 +7,19 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboar
 
 class DashboardCubit extends Cubit<DashboardState> {
   DashboardCubit(
-    WatchAccounts watchAccounts,
-  ) : super(DashboardState()) {
-    _accountRepositorySubscription = watchAccounts().listen((accounts) {
-      emit(state.copyWith(accounts: accounts));
-    });
+    this._watchAccounts,
+  ) : super(const DashboardState.loading()) {
+    _initListeners();
   }
 
+  final WatchAccounts _watchAccounts;
   late StreamSubscription<List<Account>> _accountRepositorySubscription;
+
+  void _initListeners() {
+    _accountRepositorySubscription = _watchAccounts().listen((accounts) async {
+      emit(DashboardState.data(accounts: accounts));
+    });
+  }
 
   @override
   Future<void> close() async {

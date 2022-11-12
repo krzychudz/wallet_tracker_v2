@@ -6,3 +6,11 @@ abstract class Failure {
 class DatabaseInsertFailure extends Failure {
   DatabaseInsertFailure(super.message);
 }
+
+class DatabaseNoElementFound extends Failure {
+  DatabaseNoElementFound(super.message);
+}
+
+class DatabaseRemoveFailure extends Failure {
+  DatabaseRemoveFailure(super.message);
+}

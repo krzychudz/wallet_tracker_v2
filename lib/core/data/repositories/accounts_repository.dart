@@ -36,4 +36,28 @@ class AccountRepository extends AccountRepositoryInterface {
   @override
   Stream<List<Account>> watchAll() =>
       _accountsDaoInterface.watchAll().asBroadcastStream();
+
+  @override
+  Future<Either<Failure, Account>> getAccountById(String accountId) async {
+    final account = await _accountsDaoInterface.getAccountById(accountId);
+
+    if (account == null) {
+      return Left(DatabaseNoElementFound(
+          "No Account found in database - ID $accountId"));
+    }
+
+    return Right(account);
+  }
+
+  @override
+  Future<Either<DatabaseRemoveFailure, int>> removeAccountById(
+      String accountId) async {
+    try {
+      final numberOfDeletedRows =
+          await _accountsDaoInterface.removeAccountById(accountId);
+      return Right(numberOfDeletedRows);
+    } catch (e) {
+      return Left(DatabaseRemoveFailure('Account delete failure: $e'));
+    }
+  }
 }

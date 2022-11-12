@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
+import 'package:wallet_tracker_v2/core/extensions/currency/currency.dart';
+import 'package:wallet_tracker_v2/features/account_details/account_details_module.dart';
 
-class AccountTile extends StatelessWidget {
-  const AccountTile({
+class AccountTileContainer extends StatelessWidget {
+  const AccountTileContainer({
     Key? key,
     required this.account,
   }) : super(key: key);
@@ -12,18 +15,46 @@ class AccountTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.only(right: 8, left: 8, top: 2),
+      child: AccountTile(
+        account: account,
+        onTap: () => Modular.to.pushNamed(
+          AccountDetailsModule.route,
+          arguments: account.id,
+        ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-        child: Row(
-          children: [
-            AccountInfoSection(account: account),
-            const Spacer(),
-            AccountBalanceSection(account: account)
-          ],
+    );
+  }
+}
+
+class AccountTile extends StatelessWidget {
+  const AccountTile({
+    Key? key,
+    required this.account,
+    required this.onTap,
+  }) : super(key: key);
+
+  final Account account;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          child: Row(
+            children: [
+              AccountInfoSection(account: account),
+              const Spacer(),
+              AccountBalanceSection(account: account)
+            ],
+          ),
         ),
       ),
     );
@@ -45,7 +76,7 @@ class AccountBalanceSection extends StatelessWidget {
         children: [
           const Spacer(),
           Expanded(
-            flex: 4,
+            flex: 5,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,7 +86,7 @@ class AccountBalanceSection extends StatelessWidget {
                 ).tr(),
                 const SizedBox(height: 4),
                 Text(
-                  '${account.balance.toString()} ${account.currencyCode}',
+                  account.balance.formatCurrency(),
                   style: Theme.of(context)
                       .textTheme
                       .headline3

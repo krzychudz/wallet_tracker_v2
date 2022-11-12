@@ -16,10 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DashboardState {
-  List<Account> get accounts => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DashboardStateCopyWith<DashboardState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Account> accounts) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Account> accounts)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Account> accounts)? data,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loading value) loading,
+    required TResult Function(Data value) data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Data value)? data,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Data value)? data,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -28,8 +61,6 @@ abstract class $DashboardStateCopyWith<$Res> {
   factory $DashboardStateCopyWith(
           DashboardState value, $Res Function(DashboardState) then) =
       _$DashboardStateCopyWithImpl<$Res, DashboardState>;
-  @useResult
-  $Res call({List<Account> accounts});
 }
 
 /// @nodoc
@@ -41,38 +72,121 @@ class _$DashboardStateCopyWithImpl<$Res, $Val extends DashboardState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? accounts = null,
-  }) {
-    return _then(_value.copyWith(
-      accounts: null == accounts
-          ? _value.accounts
-          : accounts // ignore: cast_nullable_to_non_nullable
-              as List<Account>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$_DashboardStateCopyWith<$Res>
-    implements $DashboardStateCopyWith<$Res> {
-  factory _$$_DashboardStateCopyWith(
-          _$_DashboardState value, $Res Function(_$_DashboardState) then) =
-      __$$_DashboardStateCopyWithImpl<$Res>;
+abstract class _$$LoadingCopyWith<$Res> {
+  factory _$$LoadingCopyWith(_$Loading value, $Res Function(_$Loading) then) =
+      __$$LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadingCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$Loading>
+    implements _$$LoadingCopyWith<$Res> {
+  __$$LoadingCopyWithImpl(_$Loading _value, $Res Function(_$Loading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$Loading implements Loading {
+  const _$Loading();
+
   @override
+  String toString() {
+    return 'DashboardState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Account> accounts) data,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Account> accounts)? data,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Account> accounts)? data,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loading value) loading,
+    required TResult Function(Data value) data,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Data value)? data,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Data value)? data,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Loading implements DashboardState {
+  const factory Loading() = _$Loading;
+}
+
+/// @nodoc
+abstract class _$$DataCopyWith<$Res> {
+  factory _$$DataCopyWith(_$Data value, $Res Function(_$Data) then) =
+      __$$DataCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Account> accounts});
 }
 
 /// @nodoc
-class __$$_DashboardStateCopyWithImpl<$Res>
-    extends _$DashboardStateCopyWithImpl<$Res, _$_DashboardState>
-    implements _$$_DashboardStateCopyWith<$Res> {
-  __$$_DashboardStateCopyWithImpl(
-      _$_DashboardState _value, $Res Function(_$_DashboardState) _then)
+class __$$DataCopyWithImpl<$Res>
+    extends _$DashboardStateCopyWithImpl<$Res, _$Data>
+    implements _$$DataCopyWith<$Res> {
+  __$$DataCopyWithImpl(_$Data _value, $Res Function(_$Data) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +194,7 @@ class __$$_DashboardStateCopyWithImpl<$Res>
   $Res call({
     Object? accounts = null,
   }) {
-    return _then(_$_DashboardState(
+    return _then(_$Data(
       accounts: null == accounts
           ? _value._accounts
           : accounts // ignore: cast_nullable_to_non_nullable
@@ -91,13 +205,11 @@ class __$$_DashboardStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DashboardState implements _DashboardState {
-  _$_DashboardState({final List<Account> accounts = const []})
-      : _accounts = accounts;
+class _$Data implements Data {
+  const _$Data({required final List<Account> accounts}) : _accounts = accounts;
 
   final List<Account> _accounts;
   @override
-  @JsonKey()
   List<Account> get accounts {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_accounts);
@@ -105,14 +217,14 @@ class _$_DashboardState implements _DashboardState {
 
   @override
   String toString() {
-    return 'DashboardState(accounts: $accounts)';
+    return 'DashboardState.data(accounts: $accounts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DashboardState &&
+            other is _$Data &&
             const DeepCollectionEquality().equals(other._accounts, _accounts));
   }
 
@@ -123,17 +235,76 @@ class _$_DashboardState implements _DashboardState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
-      __$$_DashboardStateCopyWithImpl<_$_DashboardState>(this, _$identity);
+  _$$DataCopyWith<_$Data> get copyWith =>
+      __$$DataCopyWithImpl<_$Data>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<Account> accounts) data,
+  }) {
+    return data(accounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<Account> accounts)? data,
+  }) {
+    return data?.call(accounts);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<Account> accounts)? data,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(accounts);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Loading value) loading,
+    required TResult Function(Data value) data,
+  }) {
+    return data(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Data value)? data,
+  }) {
+    return data?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Loading value)? loading,
+    TResult Function(Data value)? data,
+    required TResult orElse(),
+  }) {
+    if (data != null) {
+      return data(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _DashboardState implements DashboardState {
-  factory _DashboardState({final List<Account> accounts}) = _$_DashboardState;
+abstract class Data implements DashboardState {
+  const factory Data({required final List<Account> accounts}) = _$Data;
 
-  @override
   List<Account> get accounts;
-  @override
   @JsonKey(ignore: true)
-  _$$_DashboardStateCopyWith<_$_DashboardState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$DataCopyWith<_$Data> get copyWith => throw _privateConstructorUsedError;
 }
