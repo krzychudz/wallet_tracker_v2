@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
+import 'package:wallet_tracker_v2/core/data/currencies/currencies.dart';
 import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
@@ -47,6 +48,8 @@ class AddAccountView extends StatelessWidget {
                 onChange: (value) =>
                     context.read<AddAccountCubit>().onValueChanged(value),
               ),
+              const SizedBox(height: 16),
+              const CurrencyPicker(),
               const SizedBox(height: 24),
               const SaveButton()
             ],
@@ -67,6 +70,35 @@ class AddAccountView extends StatelessWidget {
         backgroundColor: const Color(0xffff0033),
       );
     }
+  }
+}
+
+class CurrencyPicker extends StatelessWidget {
+  const CurrencyPicker({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddAccountCubit, AddAccountState>(
+        buildWhen: (previous, current) =>
+            previous.currencyCode != current.currencyCode,
+        builder: (context, state) {
+          return DropdownButton(
+            value: state.currencyCode,
+            hint: const Text('add_account_select_currency').tr(),
+            isExpanded: true,
+            items: supportedCurrencies
+                .map(
+                  (currency) => DropdownMenuItem(
+                      value: currency.code,
+                      child: Text('${currency.name} (${currency.code})')),
+                )
+                .toList(),
+            onChanged: (currencyCode) =>
+                context.read<AddAccountCubit>().onCurrencyChanged(currencyCode),
+          );
+        });
   }
 }
 

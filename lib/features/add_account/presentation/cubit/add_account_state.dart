@@ -11,7 +11,7 @@ class AddAccountState with _$AddAccountState {
   factory AddAccountState({
     @Default("") String accountName,
     @Default(0) int initialValue,
-    @Default("PLN") String currency,
+    String? currencyCode,
     @Default(AccountCreationState.idle)
         AccountCreationState accountCreationState,
     Account? accountData,

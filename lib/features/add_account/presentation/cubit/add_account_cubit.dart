@@ -18,12 +18,17 @@ class AddAccountCubit extends Cubit<AddAccountState> {
     emit(state.copyWith(initialValue: int.parse(newValue)));
   }
 
+  void onCurrencyChanged(String? newCurrencyCode) {
+    if (newCurrencyCode == null) return;
+    emit(state.copyWith(currencyCode: newCurrencyCode));
+  }
+
   void onSubmit() async {
     emit(state.copyWith(accountCreationState: AccountCreationState.inProgress));
 
     final accountParams = AccountParams(
       name: state.accountName,
-      currency: "PLN",
+      currency: state.currencyCode ?? '',
       balance: state.initialValue,
     );
 
