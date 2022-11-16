@@ -11,6 +11,7 @@ import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart'
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_cubit.dart';
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_state.dart';
 import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class AccountDetailsView extends StatelessWidget {
   const AccountDetailsView({super.key});
@@ -69,7 +70,7 @@ class AccountDetailsView extends StatelessWidget {
   void _displayErrorSnackBar(BuildContext context) {
     context.showSnackbar(
       'account_details_remove_account_error_info'.tr(),
-      backgroundColor: const Color(0xffff0033),
+      backgroundColor: CustomColors.redError,
     );
   }
 

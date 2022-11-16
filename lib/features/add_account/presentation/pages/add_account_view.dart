@@ -10,6 +10,7 @@ import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.d
 import 'package:easy_localization/easy_localization.dart';
 import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_cubit.dart';
 import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_state.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class AddAccountView extends StatelessWidget {
   const AddAccountView({super.key});
@@ -67,7 +68,7 @@ class AddAccountView extends StatelessWidget {
     } else if (state.accountCreationState == AccountCreationState.failure) {
       context.showSnackbar(
         'add_account_error_info'.tr(),
-        backgroundColor: const Color(0xffff0033),
+        backgroundColor: CustomColors.redError,
       );
     }
   }
@@ -88,6 +89,10 @@ class CurrencyPicker extends StatelessWidget {
             value: state.currencyCode,
             hint: const Text('add_account_select_currency').tr(),
             isExpanded: true,
+            underline: Container(
+              height: 1.5,
+              color: Theme.of(context).colorScheme.secondary,
+            ),
             items: supportedCurrencies
                 .map(
                   (currency) => DropdownMenuItem(

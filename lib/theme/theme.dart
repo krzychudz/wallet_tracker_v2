@@ -41,7 +41,9 @@ ThemeData lightThemeData(BuildContext context) {
         fontSize: 12.0,
       ),
       bodyText2: GoogleFonts.montserrat(
-          color: const Color(0xff3D4548), fontSize: 10.0),
+        color: const Color(0xff3D4548),
+        fontSize: 10.0,
+      ),
       caption: GoogleFonts.montserrat(
         color: Colors.black,
         fontSize: 14.0,
