@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
@@ -48,6 +49,11 @@ class AddAccountView extends StatelessWidget {
                 keyboardType: TextInputType.number,
                 onChange: (value) =>
                     context.read<AddAccountCubit>().onValueChanged(value),
+                inputFormatters: [
+                  FilteringTextInputFormatter.deny(
+                    RegExp(r'[0-9]'),
+                  )
+                ],
               ),
               const SizedBox(height: 16),
               const CurrencyPicker(),

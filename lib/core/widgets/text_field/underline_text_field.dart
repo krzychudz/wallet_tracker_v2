@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class UnderlineTextField extends StatelessWidget {
   const UnderlineTextField({
@@ -7,12 +8,14 @@ class UnderlineTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction = TextInputAction.done,
     this.onChange,
+    this.inputFormatters,
   });
 
   final String hintText;
   final TextInputType? keyboardType;
   final TextInputAction textInputAction;
   final Function(String)? onChange;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,7 @@ class UnderlineTextField extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       onChanged: onChange,
+      inputFormatters: inputFormatters,
     );
   }
 }
