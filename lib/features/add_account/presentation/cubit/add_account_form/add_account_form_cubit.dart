@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:wallet_tracker_v2/core/input_validators/money_input.dart';
 import 'package:wallet_tracker_v2/core/input_validators/non_empty_input.dart';
+import 'package:wallet_tracker_v2/features/add_account/domain/entities/new_account_data.dart';
 import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_form/add_account_form_state.dart';
 
 class AddAccountFormCubit extends Cubit<AddAccountFormState> {
@@ -42,4 +43,10 @@ class AddAccountFormCubit extends Cubit<AddAccountFormState> {
       {required accountName, required initialValue, required currencyCode}) {
     return Formz.validate([accountName, initialValue, currencyCode]);
   }
+
+  NewAccountData getAccountData() => NewAccountData(
+        accountName: state.accountName.value,
+        accountBalance: state.initialValue.value,
+        currencyCode: state.currencyCode.value,
+      );
 }

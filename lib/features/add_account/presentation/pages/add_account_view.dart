@@ -3,13 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
+import 'package:formz/formz.dart';
 import 'package:wallet_tracker_v2/core/data/currencies/currencies.dart';
 import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
+import 'package:wallet_tracker_v2/core/input_validators/money_input.dart';
+import 'package:wallet_tracker_v2/core/input_validators/non_empty_input.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
 import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_cubit.dart';
+import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_form/add_account_form_cubit.dart';
+import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_form/add_account_form_state.dart';
 import 'package:wallet_tracker_v2/features/add_account/presentation/cubit/add_account_state.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
@@ -37,24 +42,9 @@ class AddAccountView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ).tr(),
               const SizedBox(height: 16),
-              UnderlineTextField(
-                hintText: 'add_account_enter_account_name'.tr(),
-                textInputAction: TextInputAction.next,
-                onChange: (value) =>
-                    context.read<AddAccountCubit>().onNameChanged(value),
-              ),
+              const AccountNameInput(),
               const SizedBox(height: 16),
-              UnderlineTextField(
-                hintText: 'add_account_enter_account_value'.tr(),
-                keyboardType: TextInputType.number,
-                onChange: (value) =>
-                    context.read<AddAccountCubit>().onValueChanged(value),
-                inputFormatters: [
-                  FilteringTextInputFormatter.deny(
-                    RegExp(r'[0-9]'),
-                  )
-                ],
-              ),
+              const BalanceInput(),
               const SizedBox(height: 16),
               const CurrencyPicker(),
               const SizedBox(height: 24),
@@ -80,6 +70,76 @@ class AddAccountView extends StatelessWidget {
   }
 }
 
+class BalanceInput extends StatelessWidget {
+  const BalanceInput({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
+        buildWhen: (previous, current) =>
+            previous.initialValue != current.initialValue,
+        builder: (context, state) {
+          final accountBalanceError = state.initialValue.error;
+          final isAccountBalanceInvalid = state.initialValue.invalid;
+          return UnderlineTextField(
+            hintText: 'add_account_enter_account_value'.tr(),
+            keyboardType: TextInputType.number,
+            errorText: isAccountBalanceInvalid
+                ? _getErrorText(accountBalanceError)
+                : null,
+            onChange: (value) =>
+                context.read<AddAccountFormCubit>().onValueChanged(value),
+          );
+        });
+  }
+
+  String? _getErrorText(MoneyInputError? inputError) {
+    if (inputError == null) return null;
+    if (inputError == MoneyInputError.empty) {
+      return "The account name cannot be empty";
+    }
+
+    return "Invalid balance";
+  }
+}
+
+class AccountNameInput extends StatelessWidget {
+  const AccountNameInput({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
+      buildWhen: (previous, current) =>
+          previous.accountName != current.accountName,
+      builder: (context, state) {
+        final accountNameError = state.accountName.error;
+        final isAccountNameInvalid = state.accountName.invalid;
+        return UnderlineTextField(
+          hintText: 'add_account_enter_account_name'.tr(),
+          errorText:
+              isAccountNameInvalid ? _getErrorText(accountNameError) : null,
+          textInputAction: TextInputAction.next,
+          onChange: (value) =>
+              context.read<AddAccountFormCubit>().onNameChanged(value),
+        );
+      },
+    );
+  }
+
+  String? _getErrorText(NonEmptyInputError? inputError) {
+    if (inputError == null) return null;
+    if (inputError == NonEmptyInputError.empty) {
+      return "The account name cannot be empty";
+    }
+
+    return "The account name must be longer than 3 characters";
+  }
+}
+
 class CurrencyPicker extends StatelessWidget {
   const CurrencyPicker({
     Key? key,
@@ -87,12 +147,13 @@ class CurrencyPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddAccountCubit, AddAccountState>(
+    return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
         buildWhen: (previous, current) =>
-            previous.currencyCode != current.currencyCode,
+            previous.currencyCode.value != current.currencyCode.value,
         builder: (context, state) {
+          final currencyCode = state.currencyCode.value;
           return DropdownButton(
-            value: state.currencyCode,
+            value: currencyCode.isNotEmpty ? currencyCode : null,
             hint: const Text('add_account_select_currency').tr(),
             isExpanded: true,
             underline: Container(
@@ -106,8 +167,9 @@ class CurrencyPicker extends StatelessWidget {
                       child: Text('${currency.name} (${currency.code})')),
                 )
                 .toList(),
-            onChanged: (currencyCode) =>
-                context.read<AddAccountCubit>().onCurrencyChanged(currencyCode),
+            onChanged: (currencyCode) => context
+                .read<AddAccountFormCubit>()
+                .onCurrencyChanged(currencyCode),
           );
         });
   }
@@ -124,13 +186,26 @@ class SaveButton extends StatelessWidget {
       buildWhen: (previous, current) =>
           previous.accountCreationState != current.accountCreationState,
       builder: (context, state) {
-        return SubmitButton(
-          label: tr('add_account_create_account'),
-          onPressed: () => context.read<AddAccountCubit>().onSubmit(),
-          inProgress:
-              state.accountCreationState == AccountCreationState.inProgress,
+        return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
+          buildWhen: (previous, current) =>
+              previous.formStatus != current.formStatus,
+          builder: (context, formState) {
+            return SubmitButton(
+              label: tr('add_account_create_account'),
+              onPressed: formState.formStatus == FormzStatus.valid
+                  ? () => _onSubmitPressed(context)
+                  : null,
+              inProgress:
+                  state.accountCreationState == AccountCreationState.inProgress,
+            );
+          },
         );
       },
     );
+  }
+
+  void _onSubmitPressed(BuildContext context) {
+    final accountData = context.read<AddAccountFormCubit>().getAccountData();
+    context.read<AddAccountCubit>().onSubmit(accountData);
   }
 }
