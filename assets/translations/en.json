@@ -20,5 +20,9 @@
     "account_details_remove_account_error_info": "Something went wrong while removing the account. Try again",
     "account_details_remove_success_info": "The account {} has been removed",
     "dashboard_no_accounts_placeholder": "You have no accounts.\nTap Add Account button to create a new one.",
-    "add_account_select_currency": "Select currency"
+    "add_account_select_currency": "Select currency",
+    "add_account_invalid_balance": "The balance is invalid",
+    "add_account_empty_balance": "The balance cannot be empty",
+    "add_account_empty_name": "The account name cannot be empty",
+    "add_account_too_short_name": "The account name is too short"
  }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
@@ -98,10 +97,10 @@ class BalanceInput extends StatelessWidget {
   String? _getErrorText(MoneyInputError? inputError) {
     if (inputError == null) return null;
     if (inputError == MoneyInputError.empty) {
-      return "The account name cannot be empty";
+      return 'add_account_empty_balance'.tr();
     }
 
-    return "Invalid balance";
+    return 'add_account_invalid_balance'.tr();
   }
 }
 
@@ -133,10 +132,10 @@ class AccountNameInput extends StatelessWidget {
   String? _getErrorText(NonEmptyInputError? inputError) {
     if (inputError == null) return null;
     if (inputError == NonEmptyInputError.empty) {
-      return "The account name cannot be empty";
+      return 'add_account_empty_name'.tr();
     }
 
-    return "The account name must be longer than 3 characters";
+    return 'add_account_too_short_name'.tr();
   }
 }
 
