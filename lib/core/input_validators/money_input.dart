@@ -1,10 +1,9 @@
 import 'package:formz/formz.dart';
+import 'package:wallet_tracker_v2/core/utils/regexp.dart';
 
 enum MoneyInputError { wrongFormat, empty }
 
 class MoneyInput extends FormzInput<String, MoneyInputError> {
-  final minInputLength = 3;
-
   const MoneyInput.pure() : super.pure('');
   const MoneyInput.dirty({String value = ''}) : super.dirty(value);
 
@@ -12,7 +11,7 @@ class MoneyInput extends FormzInput<String, MoneyInputError> {
   MoneyInputError? validator(String value) {
     if (value.isEmpty) {
       return MoneyInputError.empty;
-    } else if (value.length < minInputLength) {
+    } else if (!RegExpPatterns.moneyRegExp.hasMatch(value) && value != '0') {
       return MoneyInputError.wrongFormat;
     }
 
