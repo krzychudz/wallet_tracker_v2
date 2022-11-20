@@ -41,7 +41,9 @@ ThemeData lightThemeData(BuildContext context) {
         fontSize: 12.0,
       ),
       bodyText2: GoogleFonts.montserrat(
-          color: const Color(0xff3D4548), fontSize: 10.0),
+        color: const Color(0xff3D4548),
+        fontSize: 10.0,
+      ),
       caption: GoogleFonts.montserrat(
         color: Colors.black,
         fontSize: 14.0,
@@ -53,7 +55,19 @@ ThemeData lightThemeData(BuildContext context) {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) {
+              return Colors.black.withOpacity(0.5);
+            } else {
+              if (states.contains(MaterialState.disabled)) {
+                return Colors.black.withOpacity(0.5);
+              }
+            }
+            return Colors.black; // Use the component's default.
+          },
+        ),
+        // backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         textStyle: MaterialStateProperty.all<TextStyle>(
           GoogleFonts.montserrat(color: Colors.black, fontSize: 14.0),

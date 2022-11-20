@@ -9,6 +9,7 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboar
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/account_tile.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/accounts_header.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -16,7 +17,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFf0efeb),
+      backgroundColor: CustomColors.mainBackground,
       appBar: MainAppBar(
         title: 'app_name_label'.tr(),
       ),

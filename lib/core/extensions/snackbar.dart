@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 extension SnackbarExtension on BuildContext {
   void showSnackbar(
     String text, {
-    Color backgroundColor = const Color(0xFF4BB543),
+    Color backgroundColor = CustomColors.greenSuccess,
   }) {
     final snackbar = SnackBar(
       content: Text(text),

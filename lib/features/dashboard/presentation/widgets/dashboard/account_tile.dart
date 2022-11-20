@@ -86,7 +86,7 @@ class AccountBalanceSection extends StatelessWidget {
                 ).tr(),
                 const SizedBox(height: 4),
                 Text(
-                  account.balance.formatCurrency(),
+                  account.balance.formatCurrency(account.currencyCode),
                   style: Theme.of(context)
                       .textTheme
                       .headline3
