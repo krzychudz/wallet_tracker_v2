@@ -181,25 +181,16 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AddAccountCubit, AddAccountState>(
-      buildWhen: (previous, current) =>
-          previous.accountCreationState != current.accountCreationState,
-      builder: (context, state) {
-        return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
-          buildWhen: (previous, current) =>
-              previous.formStatus != current.formStatus,
-          builder: (context, formState) {
-            return SubmitButton(
-              label: tr('add_account_create_account'),
-              onPressed: formState.formStatus == FormzStatus.valid
-                  ? () => _onSubmitPressed(context)
-                  : null,
-              inProgress:
-                  state.accountCreationState == AccountCreationState.inProgress,
-            );
-          },
-        );
-      },
+    final formStatus = context.watch<AddAccountFormCubit>().state.formStatus;
+    final accountCreationState =
+        context.watch<AddAccountCubit>().state.accountCreationState;
+
+    return SubmitButton(
+      label: tr('add_account_create_account'),
+      onPressed: formStatus == FormzStatus.valid
+          ? () => _onSubmitPressed(context)
+          : null,
+      inProgress: accountCreationState == AccountCreationState.inProgress,
     );
   }
 
