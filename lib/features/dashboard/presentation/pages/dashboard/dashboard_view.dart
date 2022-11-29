@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/progress_indicator/progress_indicator.dart';
@@ -8,6 +9,7 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboar
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_state.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/account_tile.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/accounts_header.dart';
+import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/add_expense_income_button.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
@@ -28,6 +30,9 @@ class DashboardView extends StatelessWidget {
             data: (data) => AccountsList(accounts: data.accounts),
           );
         },
+      ),
+      floatingActionButton: AddAccountOperationButton(
+        onTap: (accountOperationType) => print(accountOperationType),
       ),
     );
   }
