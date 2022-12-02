@@ -17,4 +17,8 @@ class AddAccountOperationCubit extends Cubit<AddAccountOperationState> {
       ),
     );
   }
+
+  void onSelectedAccount(String? accountId) {
+    emit(state.copyWith(selectedAccountId: accountId));
+  }
 }

@@ -28,9 +28,13 @@ class AccountRepository extends AccountRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Account>>> getAccounts() {
-    // TODO: implement getAccounts
-    throw UnimplementedError();
+  Future<Either<Failure, List<Account>>> getAccounts() async {
+    try {
+      final accounts = await _accountsDaoInterface.getAll();
+      return Right(accounts);
+    } catch (e) {
+      return Left(DatabaseFetchError('Accounts fetch failure: $e'));
+    }
   }
 
   @override

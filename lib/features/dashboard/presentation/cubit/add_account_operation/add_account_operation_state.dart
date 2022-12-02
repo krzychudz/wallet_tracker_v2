@@ -8,6 +8,7 @@ part 'add_account_operation_state.g.dart';
 class AddAccountOperationState with _$AddAccountOperationState {
   factory AddAccountOperationState({
     List<Account>? accounts,
+    String? selectedAccountId,
   }) = _AddAccountOperationState;
 
   factory AddAccountOperationState.fromJson(Map<String, dynamic> json) =>
