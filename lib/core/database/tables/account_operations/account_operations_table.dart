@@ -7,7 +7,7 @@ class AccountOperationsTable extends Table {
   TextColumn get accountId => text()();
   IntColumn get value => integer().withDefault(const Constant(0))();
   IntColumn get type => intEnum<AccountOperationType>()();
-  DateTimeColumn get createAt => dateTime()();
+  DateTimeColumn get createdAt => dateTime()();
 
   @override
   Set<Column> get primaryKey => {id};

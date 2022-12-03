@@ -679,13 +679,13 @@ class AccountOperationsTableData extends DataClass
   final String accountId;
   final int value;
   final AccountOperationType type;
-  final DateTime createAt;
+  final DateTime createdAt;
   const AccountOperationsTableData(
       {required this.id,
       required this.accountId,
       required this.value,
       required this.type,
-      required this.createAt});
+      required this.createdAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -696,7 +696,7 @@ class AccountOperationsTableData extends DataClass
       final converter = $AccountOperationsTableTable.$converter0;
       map['type'] = Variable<int>(converter.toSql(type));
     }
-    map['create_at'] = Variable<DateTime>(createAt);
+    map['created_at'] = Variable<DateTime>(createdAt);
     return map;
   }
 
@@ -706,7 +706,7 @@ class AccountOperationsTableData extends DataClass
       accountId: Value(accountId),
       value: Value(value),
       type: Value(type),
-      createAt: Value(createAt),
+      createdAt: Value(createdAt),
     );
   }
 
@@ -718,7 +718,7 @@ class AccountOperationsTableData extends DataClass
       accountId: serializer.fromJson<String>(json['accountId']),
       value: serializer.fromJson<int>(json['value']),
       type: serializer.fromJson<AccountOperationType>(json['type']),
-      createAt: serializer.fromJson<DateTime>(json['createAt']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
   @override
@@ -729,7 +729,7 @@ class AccountOperationsTableData extends DataClass
       'accountId': serializer.toJson<String>(accountId),
       'value': serializer.toJson<int>(value),
       'type': serializer.toJson<AccountOperationType>(type),
-      'createAt': serializer.toJson<DateTime>(createAt),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
 
@@ -738,13 +738,13 @@ class AccountOperationsTableData extends DataClass
           String? accountId,
           int? value,
           AccountOperationType? type,
-          DateTime? createAt}) =>
+          DateTime? createdAt}) =>
       AccountOperationsTableData(
         id: id ?? this.id,
         accountId: accountId ?? this.accountId,
         value: value ?? this.value,
         type: type ?? this.type,
-        createAt: createAt ?? this.createAt,
+        createdAt: createdAt ?? this.createdAt,
       );
   @override
   String toString() {
@@ -753,13 +753,13 @@ class AccountOperationsTableData extends DataClass
           ..write('accountId: $accountId, ')
           ..write('value: $value, ')
           ..write('type: $type, ')
-          ..write('createAt: $createAt')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, accountId, value, type, createAt);
+  int get hashCode => Object.hash(id, accountId, value, type, createdAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -768,7 +768,7 @@ class AccountOperationsTableData extends DataClass
           other.accountId == this.accountId &&
           other.value == this.value &&
           other.type == this.type &&
-          other.createAt == this.createAt);
+          other.createdAt == this.createdAt);
 }
 
 class AccountOperationsTableCompanion
@@ -777,36 +777,36 @@ class AccountOperationsTableCompanion
   final Value<String> accountId;
   final Value<int> value;
   final Value<AccountOperationType> type;
-  final Value<DateTime> createAt;
+  final Value<DateTime> createdAt;
   const AccountOperationsTableCompanion({
     this.id = const Value.absent(),
     this.accountId = const Value.absent(),
     this.value = const Value.absent(),
     this.type = const Value.absent(),
-    this.createAt = const Value.absent(),
+    this.createdAt = const Value.absent(),
   });
   AccountOperationsTableCompanion.insert({
     this.id = const Value.absent(),
     required String accountId,
     this.value = const Value.absent(),
     required AccountOperationType type,
-    required DateTime createAt,
+    required DateTime createdAt,
   })  : accountId = Value(accountId),
         type = Value(type),
-        createAt = Value(createAt);
+        createdAt = Value(createdAt);
   static Insertable<AccountOperationsTableData> custom({
     Expression<String>? id,
     Expression<String>? accountId,
     Expression<int>? value,
     Expression<int>? type,
-    Expression<DateTime>? createAt,
+    Expression<DateTime>? createdAt,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (accountId != null) 'account_id': accountId,
       if (value != null) 'value': value,
       if (type != null) 'type': type,
-      if (createAt != null) 'create_at': createAt,
+      if (createdAt != null) 'created_at': createdAt,
     });
   }
 
@@ -815,13 +815,13 @@ class AccountOperationsTableCompanion
       Value<String>? accountId,
       Value<int>? value,
       Value<AccountOperationType>? type,
-      Value<DateTime>? createAt}) {
+      Value<DateTime>? createdAt}) {
     return AccountOperationsTableCompanion(
       id: id ?? this.id,
       accountId: accountId ?? this.accountId,
       value: value ?? this.value,
       type: type ?? this.type,
-      createAt: createAt ?? this.createAt,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -841,8 +841,8 @@ class AccountOperationsTableCompanion
       final converter = $AccountOperationsTableTable.$converter0;
       map['type'] = Variable<int>(converter.toSql(type.value));
     }
-    if (createAt.present) {
-      map['create_at'] = Variable<DateTime>(createAt.value);
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
     }
     return map;
   }
@@ -854,7 +854,7 @@ class AccountOperationsTableCompanion
           ..write('accountId: $accountId, ')
           ..write('value: $value, ')
           ..write('type: $type, ')
-          ..write('createAt: $createAt')
+          ..write('createdAt: $createdAt')
           ..write(')'))
         .toString();
   }
@@ -892,13 +892,13 @@ class $AccountOperationsTableTable extends AccountOperationsTable
               type: DriftSqlType.int, requiredDuringInsert: true)
           .withConverter<AccountOperationType>(
               $AccountOperationsTableTable.$converter0);
-  final VerificationMeta _createAtMeta = const VerificationMeta('createAt');
+  final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
   @override
-  late final GeneratedColumn<DateTime> createAt = GeneratedColumn<DateTime>(
-      'create_at', aliasedName, false,
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
       type: DriftSqlType.dateTime, requiredDuringInsert: true);
   @override
-  List<GeneratedColumn> get $columns => [id, accountId, value, type, createAt];
+  List<GeneratedColumn> get $columns => [id, accountId, value, type, createdAt];
   @override
   String get aliasedName => _alias ?? 'account_operations_table';
   @override
@@ -923,11 +923,11 @@ class $AccountOperationsTableTable extends AccountOperationsTable
           _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
     }
     context.handle(_typeMeta, const VerificationResult.success());
-    if (data.containsKey('create_at')) {
-      context.handle(_createAtMeta,
-          createAt.isAcceptableOrUnknown(data['create_at']!, _createAtMeta));
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
     } else if (isInserting) {
-      context.missing(_createAtMeta);
+      context.missing(_createdAtMeta);
     }
     return context;
   }
@@ -948,8 +948,8 @@ class $AccountOperationsTableTable extends AccountOperationsTable
       type: $AccountOperationsTableTable.$converter0.fromSql(attachedDatabase
           .options.types
           .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
-      createAt: attachedDatabase.options.types
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}create_at'])!,
+      createdAt: attachedDatabase.options.types
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
