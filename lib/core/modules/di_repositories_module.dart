@@ -6,7 +6,7 @@ class DIRepositoriesModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.lazySingleton<AccountRepositoryInterface>(
-          (i) => AccountRepository(i()),
+          (i) => AccountRepository(i(), i()),
           export: true,
         )
       ];
