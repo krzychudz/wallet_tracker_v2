@@ -19,7 +19,10 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Modular.get<AddAccountOperationCubit>()..init(),
+      create: (context) => Modular.get<AddAccountOperationCubit>()
+        ..init(
+          accountOperationType: accountOperationType,
+        ),
       child: _AddAccountOperationBottomSheetContent(
           accountOperationType: accountOperationType),
     );

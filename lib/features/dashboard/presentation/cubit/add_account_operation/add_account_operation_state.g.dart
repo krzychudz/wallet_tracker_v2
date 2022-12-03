@@ -13,6 +13,9 @@ _$_AddAccountOperationState _$$_AddAccountOperationStateFromJson(
           ?.map((e) => Account.fromJson(e as Map<String, dynamic>))
           .toList(),
       selectedAccountId: json['selectedAccountId'] as String?,
+      accountOperationType: $enumDecodeNullable(
+              _$AccountOperationTypeEnumMap, json['accountOperationType']) ??
+          AccountOperationType.expense,
     );
 
 Map<String, dynamic> _$$_AddAccountOperationStateToJson(
@@ -20,4 +23,11 @@ Map<String, dynamic> _$$_AddAccountOperationStateToJson(
     <String, dynamic>{
       'accounts': instance.accounts,
       'selectedAccountId': instance.selectedAccountId,
+      'accountOperationType':
+          _$AccountOperationTypeEnumMap[instance.accountOperationType]!,
     };
+
+const _$AccountOperationTypeEnumMap = {
+  AccountOperationType.expense: 'expense',
+  AccountOperationType.income: 'income',
+};
