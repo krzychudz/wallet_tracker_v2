@@ -23,7 +23,10 @@ AddAccountOperationState _$AddAccountOperationStateFromJson(
 mixin _$AddAccountOperationState {
   List<Account>? get accounts => throw _privateConstructorUsedError;
   String? get selectedAccountId => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
   AccountOperationType get accountOperationType =>
+      throw _privateConstructorUsedError;
+  AccountOperationCreationStatus? get accountOperationCreationStatus =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +44,9 @@ abstract class $AddAccountOperationStateCopyWith<$Res> {
   $Res call(
       {List<Account>? accounts,
       String? selectedAccountId,
-      AccountOperationType accountOperationType});
+      String value,
+      AccountOperationType accountOperationType,
+      AccountOperationCreationStatus? accountOperationCreationStatus});
 }
 
 /// @nodoc
@@ -60,7 +65,9 @@ class _$AddAccountOperationStateCopyWithImpl<$Res,
   $Res call({
     Object? accounts = freezed,
     Object? selectedAccountId = freezed,
+    Object? value = null,
     Object? accountOperationType = null,
+    Object? accountOperationCreationStatus = freezed,
   }) {
     return _then(_value.copyWith(
       accounts: freezed == accounts
@@ -71,10 +78,18 @@ class _$AddAccountOperationStateCopyWithImpl<$Res,
           ? _value.selectedAccountId
           : selectedAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
       accountOperationType: null == accountOperationType
           ? _value.accountOperationType
           : accountOperationType // ignore: cast_nullable_to_non_nullable
               as AccountOperationType,
+      accountOperationCreationStatus: freezed == accountOperationCreationStatus
+          ? _value.accountOperationCreationStatus
+          : accountOperationCreationStatus // ignore: cast_nullable_to_non_nullable
+              as AccountOperationCreationStatus?,
     ) as $Val);
   }
 }
@@ -91,7 +106,9 @@ abstract class _$$_AddAccountOperationStateCopyWith<$Res>
   $Res call(
       {List<Account>? accounts,
       String? selectedAccountId,
-      AccountOperationType accountOperationType});
+      String value,
+      AccountOperationType accountOperationType,
+      AccountOperationCreationStatus? accountOperationCreationStatus});
 }
 
 /// @nodoc
@@ -108,7 +125,9 @@ class __$$_AddAccountOperationStateCopyWithImpl<$Res>
   $Res call({
     Object? accounts = freezed,
     Object? selectedAccountId = freezed,
+    Object? value = null,
     Object? accountOperationType = null,
+    Object? accountOperationCreationStatus = freezed,
   }) {
     return _then(_$_AddAccountOperationState(
       accounts: freezed == accounts
@@ -119,10 +138,18 @@ class __$$_AddAccountOperationStateCopyWithImpl<$Res>
           ? _value.selectedAccountId
           : selectedAccountId // ignore: cast_nullable_to_non_nullable
               as String?,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
       accountOperationType: null == accountOperationType
           ? _value.accountOperationType
           : accountOperationType // ignore: cast_nullable_to_non_nullable
               as AccountOperationType,
+      accountOperationCreationStatus: freezed == accountOperationCreationStatus
+          ? _value.accountOperationCreationStatus
+          : accountOperationCreationStatus // ignore: cast_nullable_to_non_nullable
+              as AccountOperationCreationStatus?,
     ));
   }
 }
@@ -133,7 +160,9 @@ class _$_AddAccountOperationState implements _AddAccountOperationState {
   _$_AddAccountOperationState(
       {final List<Account>? accounts,
       this.selectedAccountId,
-      this.accountOperationType = AccountOperationType.expense})
+      this.value = "",
+      this.accountOperationType = AccountOperationType.expense,
+      this.accountOperationCreationStatus})
       : _accounts = accounts;
 
   factory _$_AddAccountOperationState.fromJson(Map<String, dynamic> json) =>
@@ -152,11 +181,16 @@ class _$_AddAccountOperationState implements _AddAccountOperationState {
   final String? selectedAccountId;
   @override
   @JsonKey()
+  final String value;
+  @override
+  @JsonKey()
   final AccountOperationType accountOperationType;
+  @override
+  final AccountOperationCreationStatus? accountOperationCreationStatus;
 
   @override
   String toString() {
-    return 'AddAccountOperationState(accounts: $accounts, selectedAccountId: $selectedAccountId, accountOperationType: $accountOperationType)';
+    return 'AddAccountOperationState(accounts: $accounts, selectedAccountId: $selectedAccountId, value: $value, accountOperationType: $accountOperationType, accountOperationCreationStatus: $accountOperationCreationStatus)';
   }
 
   @override
@@ -167,8 +201,13 @@ class _$_AddAccountOperationState implements _AddAccountOperationState {
             const DeepCollectionEquality().equals(other._accounts, _accounts) &&
             (identical(other.selectedAccountId, selectedAccountId) ||
                 other.selectedAccountId == selectedAccountId) &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.accountOperationType, accountOperationType) ||
-                other.accountOperationType == accountOperationType));
+                other.accountOperationType == accountOperationType) &&
+            (identical(other.accountOperationCreationStatus,
+                    accountOperationCreationStatus) ||
+                other.accountOperationCreationStatus ==
+                    accountOperationCreationStatus));
   }
 
   @JsonKey(ignore: true)
@@ -177,7 +216,9 @@ class _$_AddAccountOperationState implements _AddAccountOperationState {
       runtimeType,
       const DeepCollectionEquality().hash(_accounts),
       selectedAccountId,
-      accountOperationType);
+      value,
+      accountOperationType,
+      accountOperationCreationStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -196,10 +237,12 @@ class _$_AddAccountOperationState implements _AddAccountOperationState {
 
 abstract class _AddAccountOperationState implements AddAccountOperationState {
   factory _AddAccountOperationState(
-          {final List<Account>? accounts,
-          final String? selectedAccountId,
-          final AccountOperationType accountOperationType}) =
-      _$_AddAccountOperationState;
+      {final List<Account>? accounts,
+      final String? selectedAccountId,
+      final String value,
+      final AccountOperationType accountOperationType,
+      final AccountOperationCreationStatus?
+          accountOperationCreationStatus}) = _$_AddAccountOperationState;
 
   factory _AddAccountOperationState.fromJson(Map<String, dynamic> json) =
       _$_AddAccountOperationState.fromJson;
@@ -209,7 +252,11 @@ abstract class _AddAccountOperationState implements AddAccountOperationState {
   @override
   String? get selectedAccountId;
   @override
+  String get value;
+  @override
   AccountOperationType get accountOperationType;
+  @override
+  AccountOperationCreationStatus? get accountOperationCreationStatus;
   @override
   @JsonKey(ignore: true)
   _$$_AddAccountOperationStateCopyWith<_$_AddAccountOperationState>

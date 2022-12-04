@@ -26,5 +26,7 @@
     "add_account_empty_name": "The account name cannot be empty",
     "add_account_too_short_name": "The account name is too short",
     "add_expense": "Add expense",
-    "add_income": "Add income"
+    "add_income": "Add income",
+    "expense_added": "Expense has been added",
+    "income_added": "Income has been added"
  }

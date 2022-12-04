@@ -9,4 +9,5 @@ part of 'account_operations_dao.dart';
 mixin _$AccountOperationsDaoMixin on DatabaseAccessor<AppDatabase> {
   $AccountOperationsTableTable get accountOperationsTable =>
       attachedDatabase.accountOperationsTable;
+  $AccountsTableTable get accountsTable => attachedDatabase.accountsTable;
 }

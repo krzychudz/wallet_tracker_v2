@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
 import 'package:wallet_tracker_v2/core/enums/operation_type.dart';
+import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
 import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/add_account_operation/add_account_operation_cubit.dart';
@@ -23,9 +24,36 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
         ..init(
           accountOperationType: accountOperationType,
         ),
-      child: _AddAccountOperationBottomSheetContent(
-          accountOperationType: accountOperationType),
+      child: BlocListener<AddAccountOperationCubit, AddAccountOperationState>(
+        listenWhen: (previous, current) =>
+            previous.accountOperationCreationStatus !=
+            current.accountOperationCreationStatus,
+        listener: (context, state) => onAccountOperationStatusChanged(
+          context,
+          status: state.accountOperationCreationStatus,
+          accountOperationType: state.accountOperationType,
+        ),
+        child: _AddAccountOperationBottomSheetContent(
+            accountOperationType: accountOperationType),
+      ),
     );
+  }
+
+  void onAccountOperationStatusChanged(
+    BuildContext context, {
+    AccountOperationCreationStatus? status,
+    required AccountOperationType accountOperationType,
+  }) {
+    if (status == null) return;
+
+    if (status == AccountOperationCreationStatus.success) {
+      final confirmationText =
+          accountOperationType == AccountOperationType.expense
+              ? tr('expense_added')
+              : tr('income_added');
+      context.showSnackbar(confirmationText);
+      Modular.to.pop();
+    }
   }
 }
 
@@ -54,13 +82,16 @@ class _AddAccountOperationBottomSheetContent extends StatelessWidget {
           UnderlineTextField(
             hintText: 'add_account_enter_account_value'.tr(),
             keyboardType: TextInputType.number,
+            onChange: (value) =>
+                context.read<AddAccountOperationCubit>().onValueChanged(value),
           ),
           const SizedBox(height: 12),
           const AccountPicker(),
           const SizedBox(height: 16),
           SubmitButton(
-            label: tr('add_account_create_account'),
-            onPressed: () => {},
+            label: 'Add',
+            onPressed: () =>
+                context.read<AddAccountOperationCubit>().onSubmitPressed(),
           ),
         ],
       ),
