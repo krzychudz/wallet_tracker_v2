@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:wallet_tracker_v2/core/data/models/account_operation/account_operation.dart';
 import 'package:wallet_tracker_v2/core/data/models/account_operation/params/account_operations_params.dart';
-import 'package:wallet_tracker_v2/core/domain/repositories/account_repository_interface.dart';
+import 'package:wallet_tracker_v2/core/domain/repositories/account_operations_repository_interface.dart';
 import 'package:wallet_tracker_v2/core/error/failures.dart';
 
 class AddAccountOperation {
-  final AccountRepositoryInterface _repository;
+  final AccountOperationsRepositoryInterface _repository;
 
   AddAccountOperation(this._repository);
 

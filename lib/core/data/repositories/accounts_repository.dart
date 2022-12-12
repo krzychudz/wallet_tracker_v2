@@ -2,21 +2,14 @@ import 'package:uuid/uuid.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
 import 'package:dartz/dartz.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/params/account_params.dart';
-import 'package:wallet_tracker_v2/core/data/models/account_operation/account_operation.dart';
-import 'package:wallet_tracker_v2/core/data/models/account_operation/params/account_operations_params.dart';
 import 'package:wallet_tracker_v2/core/database/daos/account/accounts_dao_interface.dart';
-import 'package:wallet_tracker_v2/core/database/daos/account_operations/account_operations_dao_interface.dart';
 import 'package:wallet_tracker_v2/core/domain/repositories/account_repository_interface.dart';
 import 'package:wallet_tracker_v2/core/error/failures.dart';
 
 class AccountRepository extends AccountRepositoryInterface {
-  AccountRepository(
-    this._accountsDao,
-    this._accountOperationsDao,
-  );
+  AccountRepository(this._accountsDao);
 
   final AccountsDaoInterface _accountsDao;
-  final AccountOperationsDaoInterface _accountOperationsDao;
 
   @override
   Future<Either<Failure, Account>> addAccount(AccountParams account) async {
@@ -69,26 +62,6 @@ class AccountRepository extends AccountRepositoryInterface {
       return Right(numberOfDeletedRows);
     } catch (e) {
       return Left(DatabaseRemoveFailure('Account delete failure: $e'));
-    }
-  }
-
-  @override
-  Future<Either<Failure, AccountOperation>> addAccountOperation(
-      AccountOperationParams accountOperation) async {
-    try {
-      final accountOperationData = AccountOperation(
-        id: const Uuid().v4(),
-        accountId: accountOperation.accountId,
-        type: accountOperation.type,
-        value: accountOperation.value,
-        createdAt: DateTime.now(),
-      );
-      final newAccountOperation =
-          await _accountOperationsDao.insertSingle(accountOperationData);
-      return Right(newAccountOperation);
-    } catch (e) {
-      return Left(
-          DatabaseInsertFailure('Account operation insert failure: $e'));
     }
   }
 }
