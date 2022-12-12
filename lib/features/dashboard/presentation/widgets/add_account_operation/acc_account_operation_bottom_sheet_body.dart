@@ -49,8 +49,8 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
     if (status == AccountOperationCreationStatus.success) {
       final confirmationText =
           accountOperationType == AccountOperationType.expense
-              ? tr('expense_added')
-              : tr('income_added');
+              ? 'expense_added'.tr()
+              : 'income_added'.tr();
       context.showSnackbar(confirmationText);
       Modular.to.pop();
     }
@@ -89,7 +89,7 @@ class _AddAccountOperationBottomSheetContent extends StatelessWidget {
           const AccountPicker(),
           const SizedBox(height: 16),
           SubmitButton(
-            label: 'Add',
+            label: 'account_operation_add'.tr(),
             onPressed: () =>
                 context.read<AddAccountOperationCubit>().onSubmitPressed(),
           ),

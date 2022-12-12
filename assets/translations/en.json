@@ -28,5 +28,6 @@
     "add_expense": "Add expense",
     "add_income": "Add income",
     "expense_added": "Expense has been added",
-    "income_added": "Income has been added"
+    "income_added": "Income has been added",
+    "account_operation_add": "Add"
  }
