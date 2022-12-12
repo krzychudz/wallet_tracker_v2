@@ -1,0 +1,1 @@
+enum AccountOperationType { expense, income }

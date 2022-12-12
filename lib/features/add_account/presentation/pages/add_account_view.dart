@@ -77,21 +77,22 @@ class BalanceInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AddAccountFormCubit, AddAccountFormState>(
-        buildWhen: (previous, current) =>
-            previous.initialValue != current.initialValue,
-        builder: (context, state) {
-          final accountBalanceError = state.initialValue.error;
-          final isAccountBalanceInvalid = state.initialValue.invalid;
-          return UnderlineTextField(
-            hintText: 'add_account_enter_account_value'.tr(),
-            keyboardType: TextInputType.number,
-            errorText: isAccountBalanceInvalid
-                ? _getErrorText(accountBalanceError)
-                : null,
-            onChange: (value) =>
-                context.read<AddAccountFormCubit>().onValueChanged(value),
-          );
-        });
+      buildWhen: (previous, current) =>
+          previous.initialValue != current.initialValue,
+      builder: (context, state) {
+        final accountBalanceError = state.initialValue.error;
+        final isAccountBalanceInvalid = state.initialValue.invalid;
+        return UnderlineTextField(
+          hintText: 'add_account_enter_account_value'.tr(),
+          keyboardType: TextInputType.number,
+          errorText: isAccountBalanceInvalid
+              ? _getErrorText(accountBalanceError)
+              : null,
+          onChange: (value) =>
+              context.read<AddAccountFormCubit>().onValueChanged(value),
+        );
+      },
+    );
   }
 
   String? _getErrorText(MoneyInputError? inputError) {

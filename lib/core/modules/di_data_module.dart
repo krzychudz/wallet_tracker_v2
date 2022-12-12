@@ -5,5 +5,7 @@ class DIDataModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.lazySingleton((i) => AppDatabase().accountsDao, export: true),
+        Bind.lazySingleton((i) => AppDatabase().accountOperationsDao,
+            export: true),
       ];
 }

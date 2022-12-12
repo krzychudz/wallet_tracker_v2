@@ -6,8 +6,10 @@ import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/progress_indicator/progress_indicator.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_state.dart';
+import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/add_account_operation/add_account_operation_bottom_sheet.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/account_tile.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/accounts_header.dart';
+import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/add_expense_income_button.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
@@ -28,6 +30,12 @@ class DashboardView extends StatelessWidget {
             data: (data) => AccountsList(accounts: data.accounts),
           );
         },
+      ),
+      floatingActionButton: AddAccountOperationButton(
+        onTap: (accountOperationType) => AddAccountOperationBottomSheet.show(
+          context,
+          accountOperationType: accountOperationType,
+        ),
       ),
     );
   }

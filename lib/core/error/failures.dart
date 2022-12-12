@@ -14,3 +14,7 @@ class DatabaseNoElementFound extends Failure {
 class DatabaseRemoveFailure extends Failure {
   DatabaseRemoveFailure(super.message);
 }
+
+class DatabaseFetchError extends Failure {
+  DatabaseFetchError(super.message);
+}
