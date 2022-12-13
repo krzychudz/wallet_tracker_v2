@@ -6,4 +6,6 @@ import 'package:wallet_tracker_v2/core/error/failures.dart';
 abstract class AccountOperationsRepositoryInterface {
   Future<Either<Failure, AccountOperation>> addAccountOperation(
       AccountOperationParams accountOperation);
+
+  Future<Either<Failure, List<AccountOperation>>> getAccountOperations();
 }

@@ -31,4 +31,14 @@ class AccountOperationsRepository
           DatabaseInsertFailure('Account operation insert failure: $e'));
     }
   }
+
+  @override
+  Future<Either<Failure, List<AccountOperation>>> getAccountOperations() async {
+    try {
+      final accountsOperations = await _accountOperationsDao.getAll();
+      return Right(accountsOperations);
+    } catch (e) {
+      return Left(DatabaseFetchError('Account operations fetch error: $e'));
+    }
+  }
 }
