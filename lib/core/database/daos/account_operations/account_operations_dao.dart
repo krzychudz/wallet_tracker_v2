@@ -17,11 +17,19 @@ class AccountOperationsDao extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<List<AccountOperation>> getAll() async {
-    final data = await select(accountOperationsTable).get();
-    return data
-        .map((accountOperationTableData) =>
-            accountOperationTableData.toAccountOperation())
-        .toList();
+    final query = await select(accountOperationsTable).join([
+      leftOuterJoin(accountsTable,
+          accountsTable.id.equalsExp(accountOperationsTable.accountId))
+    ]).get();
+
+    final accountOperationsData = query.map((row) {
+      final accountOperationData = row.readTable(accountOperationsTable);
+      final accountData = row.readTable(accountsTable);
+
+      return accountOperationData.toAccountOperationWithAccount(accountData);
+    });
+
+    return accountOperationsData.toList();
   }
 
   @override

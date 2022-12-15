@@ -25,6 +25,7 @@ mixin _$AccountOperation {
   AccountOperationType get type => throw _privateConstructorUsedError;
   int get value => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  String? get accountName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $AccountOperationCopyWith<$Res> {
       String accountId,
       AccountOperationType type,
       int value,
-      DateTime createdAt});
+      DateTime createdAt,
+      String? accountName});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$AccountOperationCopyWithImpl<$Res, $Val extends AccountOperation>
     Object? type = null,
     Object? value = null,
     Object? createdAt = null,
+    Object? accountName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +89,10 @@ class _$AccountOperationCopyWithImpl<$Res, $Val extends AccountOperation>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      accountName: freezed == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$_AccountOperationCopyWith<$Res>
       String accountId,
       AccountOperationType type,
       int value,
-      DateTime createdAt});
+      DateTime createdAt,
+      String? accountName});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$_AccountOperationCopyWithImpl<$Res>
     Object? type = null,
     Object? value = null,
     Object? createdAt = null,
+    Object? accountName = freezed,
   }) {
     return _then(_$_AccountOperation(
       id: null == id
@@ -144,6 +153,10 @@ class __$$_AccountOperationCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      accountName: freezed == accountName
+          ? _value.accountName
+          : accountName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -156,7 +169,8 @@ class _$_AccountOperation implements _AccountOperation {
       required this.accountId,
       required this.type,
       required this.value,
-      required this.createdAt});
+      required this.createdAt,
+      this.accountName});
 
   factory _$_AccountOperation.fromJson(Map<String, dynamic> json) =>
       _$$_AccountOperationFromJson(json);
@@ -171,10 +185,12 @@ class _$_AccountOperation implements _AccountOperation {
   final int value;
   @override
   final DateTime createdAt;
+  @override
+  final String? accountName;
 
   @override
   String toString() {
-    return 'AccountOperation(id: $id, accountId: $accountId, type: $type, value: $value, createdAt: $createdAt)';
+    return 'AccountOperation(id: $id, accountId: $accountId, type: $type, value: $value, createdAt: $createdAt, accountName: $accountName)';
   }
 
   @override
@@ -188,13 +204,15 @@ class _$_AccountOperation implements _AccountOperation {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.accountName, accountName) ||
+                other.accountName == accountName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, accountId, type, value, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, accountId, type, value, createdAt, accountName);
 
   @JsonKey(ignore: true)
   @override
@@ -216,7 +234,8 @@ abstract class _AccountOperation implements AccountOperation {
       required final String accountId,
       required final AccountOperationType type,
       required final int value,
-      required final DateTime createdAt}) = _$_AccountOperation;
+      required final DateTime createdAt,
+      final String? accountName}) = _$_AccountOperation;
 
   factory _AccountOperation.fromJson(Map<String, dynamic> json) =
       _$_AccountOperation.fromJson;
@@ -231,6 +250,8 @@ abstract class _AccountOperation implements AccountOperation {
   int get value;
   @override
   DateTime get createdAt;
+  @override
+  String? get accountName;
   @override
   @JsonKey(ignore: true)
   _$$_AccountOperationCopyWith<_$_AccountOperation> get copyWith =>

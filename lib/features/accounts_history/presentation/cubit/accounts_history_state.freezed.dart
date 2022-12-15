@@ -18,21 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AccountsHistoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<AccountOperation> data) data,
+    required TResult Function(List<GroupedData<String, AccountOperation>> data)
+        data,
     required TResult Function() loading,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<AccountOperation> data)? data,
+    TResult? Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult? Function()? loading,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<AccountOperation> data)? data,
+    TResult Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     required TResult orElse(),
@@ -86,7 +87,7 @@ abstract class _$$DataCopyWith<$Res> {
   factory _$$DataCopyWith(_$Data value, $Res Function(_$Data) then) =
       __$$DataCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AccountOperation> data});
+  $Res call({List<GroupedData<String, AccountOperation>> data});
 }
 
 /// @nodoc
@@ -105,7 +106,7 @@ class __$$DataCopyWithImpl<$Res>
       null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<AccountOperation>,
+              as List<GroupedData<String, AccountOperation>>,
     ));
   }
 }
@@ -113,11 +114,12 @@ class __$$DataCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Data implements Data {
-  const _$Data(final List<AccountOperation> data) : _data = data;
+  const _$Data(final List<GroupedData<String, AccountOperation>> data)
+      : _data = data;
 
-  final List<AccountOperation> _data;
+  final List<GroupedData<String, AccountOperation>> _data;
   @override
-  List<AccountOperation> get data {
+  List<GroupedData<String, AccountOperation>> get data {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
   }
@@ -148,7 +150,8 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<AccountOperation> data) data,
+    required TResult Function(List<GroupedData<String, AccountOperation>> data)
+        data,
     required TResult Function() loading,
     required TResult Function(String? message) error,
   }) {
@@ -158,7 +161,7 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<AccountOperation> data)? data,
+    TResult? Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult? Function()? loading,
     TResult? Function(String? message)? error,
   }) {
@@ -168,7 +171,7 @@ class _$Data implements Data {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<AccountOperation> data)? data,
+    TResult Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     required TResult orElse(),
@@ -215,9 +218,10 @@ class _$Data implements Data {
 }
 
 abstract class Data implements AccountsHistoryState {
-  const factory Data(final List<AccountOperation> data) = _$Data;
+  const factory Data(final List<GroupedData<String, AccountOperation>> data) =
+      _$Data;
 
-  List<AccountOperation> get data;
+  List<GroupedData<String, AccountOperation>> get data;
   @JsonKey(ignore: true)
   _$$DataCopyWith<_$Data> get copyWith => throw _privateConstructorUsedError;
 }
@@ -258,7 +262,8 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<AccountOperation> data) data,
+    required TResult Function(List<GroupedData<String, AccountOperation>> data)
+        data,
     required TResult Function() loading,
     required TResult Function(String? message) error,
   }) {
@@ -268,7 +273,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<AccountOperation> data)? data,
+    TResult? Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult? Function()? loading,
     TResult? Function(String? message)? error,
   }) {
@@ -278,7 +283,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<AccountOperation> data)? data,
+    TResult Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     required TResult orElse(),
@@ -390,7 +395,8 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<AccountOperation> data) data,
+    required TResult Function(List<GroupedData<String, AccountOperation>> data)
+        data,
     required TResult Function() loading,
     required TResult Function(String? message) error,
   }) {
@@ -400,7 +406,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<AccountOperation> data)? data,
+    TResult? Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult? Function()? loading,
     TResult? Function(String? message)? error,
   }) {
@@ -410,7 +416,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<AccountOperation> data)? data,
+    TResult Function(List<GroupedData<String, AccountOperation>> data)? data,
     TResult Function()? loading,
     TResult Function(String? message)? error,
     required TResult orElse(),
