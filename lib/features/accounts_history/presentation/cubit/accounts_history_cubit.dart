@@ -12,7 +12,7 @@ class AccountsHistoryCubit extends Cubit<AccountsHistoryState> {
   void onPageEntered() async {
     final accountOperationsData = await _getAccountOperations();
     accountOperationsData.fold(
-      (l) => print("Error: $l"),
+      (l) => print("Error: ${l.message}"),
       (accountOperations) => emit(
         AccountsHistoryState.data(accountOperations.groupedByData),
       ),
