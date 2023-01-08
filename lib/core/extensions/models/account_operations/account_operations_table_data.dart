@@ -22,6 +22,7 @@ extension AccountOperationsTableDataExt on AccountOperationsTableData {
       value: value,
       createdAt: createdAt,
       type: type,
+      currencyCode: accountsTableData.currencyCode,
     );
   }
 }

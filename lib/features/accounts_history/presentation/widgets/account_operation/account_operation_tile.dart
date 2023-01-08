@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_tracker_v2/core/data/models/account_operation/account_operation.dart';
 import 'package:wallet_tracker_v2/core/enums/operation_type.dart';
+import 'package:wallet_tracker_v2/core/extensions/currency/currency.dart';
 import 'package:wallet_tracker_v2/core/extensions/date_time/date_time.dart';
 
 class AccountOperationTile extends StatelessWidget {
@@ -52,6 +53,7 @@ class AccountOperationTileBody extends StatelessWidget {
         const Spacer(),
         AccountOperationValue(
           value: accountOperation.value,
+          currencyCode: accountOperation.currencyCode ?? 'EUR',
           type: accountOperation.type,
         ),
       ],
@@ -63,18 +65,22 @@ class AccountOperationValue extends StatelessWidget {
   const AccountOperationValue({
     Key? key,
     required this.value,
+    required this.currencyCode,
     required this.type,
   }) : super(key: key);
 
   final int value;
+  final String currencyCode;
   final AccountOperationType type;
 
   @override
   Widget build(BuildContext context) {
+    final formattedValue = value.formatCurrency(currencyCode);
+
     return Text(
       type == AccountOperationType.income
-          ? value.toString()
-          : '-${value.toString()}',
+          ? formattedValue
+          : '-${formattedValue}',
       style: TextStyle(
         color: type == AccountOperationType.income
             ? Colors.green

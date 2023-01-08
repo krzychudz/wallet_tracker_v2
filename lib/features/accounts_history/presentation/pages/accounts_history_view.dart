@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -15,7 +16,7 @@ class AccountsHistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MainAppBar(title: 'History'),
+      appBar: MainAppBar(title: tr('accounts_history_label')),
       body: BlocBuilder<AccountsHistoryCubit, AccountsHistoryState>(
         buildWhen: (previous, current) => previous != current,
         builder: (context, state) => state.map(
@@ -74,7 +75,7 @@ class ErrorPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('No data available'));
+    return Center(child: Text(tr('accounts_history_empty')));
   }
 }
 

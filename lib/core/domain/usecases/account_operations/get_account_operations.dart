@@ -4,7 +4,7 @@ import 'package:wallet_tracker_v2/core/domain/repositories/account_operations_re
 import 'package:wallet_tracker_v2/core/error/failures.dart';
 
 int sortAccountOperations(AccountOperation first, AccountOperation second) {
-  return first.createdAt.compareTo(second.createdAt);
+  return second.createdAt.compareTo(first.createdAt);
 }
 
 class GetAccountOperations {
