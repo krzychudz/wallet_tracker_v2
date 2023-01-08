@@ -1,13 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:wallet_tracker_v2/core/data/models/account_operation/account_operation.dart';
 import 'package:wallet_tracker_v2/core/data/models/grouped_data/grouped_data.dart';
-import 'package:intl/intl.dart';
+import 'package:wallet_tracker_v2/core/extensions/date_time/date_time.dart';
 
 extension AccountOperationOperationsList on List<AccountOperation> {
   List<GroupedData<String, AccountOperation>> get groupedByData {
-    final groupDateFormat = DateFormat('yyyy-MM-dd');
     final groupedData =
-        groupBy(this, (obj) => groupDateFormat.format(obj.createdAt));
+        groupBy(this, (obj) => obj.createdAt.format('yyyy-MM-dd'));
 
     final dataList = groupedData.entries
         .map((entry) => GroupedData<String, AccountOperation>(

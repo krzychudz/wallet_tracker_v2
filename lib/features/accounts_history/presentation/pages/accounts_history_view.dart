@@ -6,6 +6,8 @@ import 'package:wallet_tracker_v2/core/data/models/grouped_data/grouped_data.dar
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/features/accounts_history/presentation/cubit/accounts_history_cubit.dart';
 import 'package:wallet_tracker_v2/features/accounts_history/presentation/cubit/accounts_history_state.dart';
+import 'package:wallet_tracker_v2/features/accounts_history/presentation/widgets/account_operation/account_operation_tile.dart';
+import 'package:wallet_tracker_v2/features/accounts_history/presentation/widgets/date_header.dart';
 
 class AccountsHistoryView extends StatelessWidget {
   const AccountsHistoryView({super.key});
@@ -15,14 +17,15 @@ class AccountsHistoryView extends StatelessWidget {
     return Scaffold(
       appBar: const MainAppBar(title: 'History'),
       body: BlocBuilder<AccountsHistoryCubit, AccountsHistoryState>(
-          buildWhen: (previous, current) => previous != current,
-          builder: (context, state) => state.map(
-                data: (accountOperations) => AccountsOperationList(
-                  accountsOperation: accountOperations.data,
-                ),
-                loading: (_) => const ProgressIndicator(),
-                error: (_) => const ErrorPlaceholder(),
-              )),
+        buildWhen: (previous, current) => previous != current,
+        builder: (context, state) => state.map(
+          data: (accountOperations) => AccountsOperationList(
+            accountsOperation: accountOperations.data,
+          ),
+          loading: (_) => const ProgressIndicator(),
+          error: (_) => const ErrorPlaceholder(),
+        ),
+      ),
     );
   }
 }
@@ -40,17 +43,20 @@ class AccountsOperationList extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         ...accountsOperation.map(
-          (element) => MultiSliver(
+          (accountOperationsGroup) => MultiSliver(
+            pushPinnedChildren: true,
             children: [
               SliverPinnedHeader(
-                child: Text(element.header, style: TextStyle(fontSize: 24)),
+                child: DateHeader(label: accountOperationsGroup.header),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) => Text(
-                    element.data[index].value.toString(),
+                  (context, index) => AccountOperationTile(
+                    accountOperation: accountOperationsGroup.data[index],
+                    applyDivider:
+                        index != accountOperationsGroup.data.length - 1,
                   ),
-                  childCount: element.data.length,
+                  childCount: accountOperationsGroup.data.length,
                 ),
               )
             ],
@@ -58,29 +64,6 @@ class AccountsOperationList extends StatelessWidget {
         )
       ],
     );
-  }
-}
-
-class AccountOperationsDateList extends StatelessWidget {
-  const AccountOperationsDateList({
-    Key? key,
-    required this.accountsOperation,
-  }) : super(key: key);
-
-  final List<AccountOperation> accountsOperation;
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate(
-      ((context, index) => Row(
-            children: [
-              Text(accountsOperation[index].accountName ?? ""),
-              Text(accountsOperation[index].value.toString())
-            ],
-          )),
-      childCount: accountsOperation.length,
-    ));
   }
 }
 
