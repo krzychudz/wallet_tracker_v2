@@ -13,6 +13,8 @@ _$_AccountOperation _$$_AccountOperationFromJson(Map<String, dynamic> json) =>
       type: $enumDecode(_$AccountOperationTypeEnumMap, json['type']),
       value: json['value'] as int,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      currencyCode: json['currencyCode'] as String?,
+      accountName: json['accountName'] as String?,
     );
 
 Map<String, dynamic> _$$_AccountOperationToJson(_$_AccountOperation instance) =>
@@ -22,6 +24,8 @@ Map<String, dynamic> _$$_AccountOperationToJson(_$_AccountOperation instance) =>
       'type': _$AccountOperationTypeEnumMap[instance.type]!,
       'value': instance.value,
       'createdAt': instance.createdAt.toIso8601String(),
+      'currencyCode': instance.currencyCode,
+      'accountName': instance.accountName,
     };
 
 const _$AccountOperationTypeEnumMap = {

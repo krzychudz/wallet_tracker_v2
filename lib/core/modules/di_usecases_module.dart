@@ -5,6 +5,7 @@ import 'package:wallet_tracker_v2/core/domain/usecases/account/get_accounts.dart
 import 'package:wallet_tracker_v2/core/domain/usecases/account/remove_account.dart';
 import 'package:wallet_tracker_v2/core/domain/usecases/account/watch_accounts.dart';
 import 'package:wallet_tracker_v2/core/domain/usecases/account_operations/add_account_operation.dart';
+import 'package:wallet_tracker_v2/core/domain/usecases/account_operations/get_account_operations.dart';
 
 class DIUseCasesModule extends Module {
   @override
@@ -31,6 +32,10 @@ class DIUseCasesModule extends Module {
         ),
         Bind.lazySingleton<AddAccountOperation>(
           (i) => AddAccountOperation(i()),
+          export: true,
+        ),
+        Bind.lazySingleton<GetAccountOperations>(
+          (i) => GetAccountOperations(i()),
           export: true,
         )
       ];

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/widgets/underline_text_button/underline_text_button.dart';
+import 'package:wallet_tracker_v2/features/accounts_history/accounts_history_module.dart';
 import 'package:wallet_tracker_v2/features/add_account/add_account_module.dart';
 
 class AccountsHeader extends StatelessWidget {
@@ -39,7 +40,8 @@ class AccountsHeader extends StatelessWidget {
                 const SizedBox(width: 10),
                 UnderlineTextButton(
                   label: 'dashboard_accounts_history'.tr(),
-                  onTap: () => print("d"),
+                  onTap: () =>
+                      Modular.to.pushNamed(AccountsHistoryModule.route),
                 ),
               ],
             )

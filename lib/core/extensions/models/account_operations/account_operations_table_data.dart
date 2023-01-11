@@ -12,6 +12,19 @@ extension AccountOperationsTableDataExt on AccountOperationsTableData {
       type: type,
     );
   }
+
+  AccountOperation toAccountOperationWithAccount(
+      AccountsTableData accountsTableData) {
+    return AccountOperation(
+      id: id,
+      accountId: accountId,
+      accountName: accountsTableData.name,
+      value: value,
+      createdAt: createdAt,
+      type: type,
+      currencyCode: accountsTableData.currencyCode,
+    );
+  }
 }
 
 extension AccountCompanionExt on AccountOperation {

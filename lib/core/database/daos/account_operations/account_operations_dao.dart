@@ -16,9 +16,20 @@ class AccountOperationsDao extends DatabaseAccessor<AppDatabase>
   AccountOperationsDao(super.attachedDatabase);
 
   @override
-  Future<List<AccountOperation>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
+  Future<List<AccountOperation>> getAll() async {
+    final query = await select(accountOperationsTable).join([
+      leftOuterJoin(accountsTable,
+          accountsTable.id.equalsExp(accountOperationsTable.accountId))
+    ]).get();
+
+    final accountOperationsData = query.map((row) {
+      final accountOperationData = row.readTable(accountOperationsTable);
+      final accountData = row.readTable(accountsTable);
+
+      return accountOperationData.toAccountOperationWithAccount(accountData);
+    });
+
+    return accountOperationsData.toList();
   }
 
   @override

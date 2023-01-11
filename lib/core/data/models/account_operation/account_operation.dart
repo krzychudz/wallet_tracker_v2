@@ -12,6 +12,8 @@ class AccountOperation with _$AccountOperation {
     required AccountOperationType type,
     required int value,
     required DateTime createdAt,
+    String? currencyCode,
+    String? accountName,
   }) = _AccountOperation;
 
   factory AccountOperation.fromJson(Map<String, dynamic> json) =>

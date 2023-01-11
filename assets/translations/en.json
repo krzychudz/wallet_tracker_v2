@@ -29,5 +29,7 @@
     "add_income": "Add income",
     "expense_added": "Expense has been added",
     "income_added": "Income has been added",
-    "account_operation_add": "Add"
+    "account_operation_add": "Add",
+    "accounts_history_label": "Accounts History",
+    "accounts_history_empty": "You have no transactions yet."
  }
