@@ -31,5 +31,7 @@
     "income_added": "Income has been added",
     "account_operation_add": "Add",
     "accounts_history_label": "Accounts History",
-    "accounts_history_empty": "You have no transactions yet."
+    "accounts_history_empty": "You have no transactions yet.",
+    "add_account_operation_value": "Enter operation value",
+    "add_account_operation_select_account": "Select account"
  }
