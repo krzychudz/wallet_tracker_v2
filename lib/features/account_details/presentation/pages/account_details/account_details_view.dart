@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
+import 'package:wallet_tracker_v2/core/extensions/currency/currency.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/divider/primary_divider.dart';
 import 'package:wallet_tracker_v2/core/widgets/header/app_header.dart';
@@ -37,7 +38,7 @@ class AccountDetailsView extends StatelessWidget {
               AppHeader(
                 label: 'account_details_label'.tr(),
               ),
-              AccountDetailsSection(account: account),
+              if (account != null) AccountDetailsSection(account: account),
               const SizedBox(height: 32),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -87,7 +88,7 @@ class AccountDetailsSection extends StatelessWidget {
     required this.account,
   }) : super(key: key);
 
-  final Account? account;
+  final Account account;
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +96,16 @@ class AccountDetailsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AccountInfoTile(
-            label: 'account_details_name'.tr(), value: account?.name ?? ''),
+            label: 'account_details_name'.tr(), value: account.name),
         const PrimaryDivider(),
         AccountInfoTile(
-            label: 'account_details_balance'.tr(),
-            value: account?.balance.toString() ?? ''),
+          label: 'account_details_balance'.tr(),
+          value: account.balance.formatCurrency(account.currencyCode),
+        ),
         const PrimaryDivider(),
         AccountInfoTile(
             label: 'account_details_currency_code'.tr(),
-            value: account?.currencyCode ?? ''),
+            value: account.currencyCode),
         const PrimaryDivider(),
       ],
     );
