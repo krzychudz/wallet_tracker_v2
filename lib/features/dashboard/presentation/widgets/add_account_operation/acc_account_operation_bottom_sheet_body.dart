@@ -1,15 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
+import 'package:formz/formz.dart';
 import 'package:wallet_tracker_v2/core/enums/operation_type.dart';
 import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
+import 'package:wallet_tracker_v2/core/input_validators/money_input.dart';
 import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart';
 import 'package:wallet_tracker_v2/core/widgets/text_field/underline_text_field.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/add_account_operation/add_account_operation_cubit.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/add_account_operation/add_account_operation_state.dart';
+import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/add_account_operation/account_picker.dart';
 
 class AddAccountOperationBottomSheetBody extends StatelessWidget {
   const AddAccountOperationBottomSheetBody(
@@ -27,13 +29,14 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
       child: BlocListener<AddAccountOperationCubit, AddAccountOperationState>(
         listenWhen: (previous, current) =>
             previous.accountOperationCreationStatus !=
-            current.accountOperationCreationStatus,
+                current.accountOperationCreationStatus ||
+            previous.formStatus != current.formStatus,
         listener: (context, state) => onAccountOperationStatusChanged(
           context,
-          status: state.accountOperationCreationStatus,
+          status: state.formStatus,
           accountOperationType: state.accountOperationType,
         ),
-        child: _AddAccountOperationBottomSheetContent(
+        child: AddAccountOperationBottomSheetContent(
             accountOperationType: accountOperationType),
       ),
     );
@@ -41,12 +44,12 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
 
   void onAccountOperationStatusChanged(
     BuildContext context, {
-    AccountOperationCreationStatus? status,
+    FormzStatus? status,
     required AccountOperationType accountOperationType,
   }) {
     if (status == null) return;
 
-    if (status == AccountOperationCreationStatus.success) {
+    if (status == FormzStatus.submissionSuccess) {
       final confirmationText =
           accountOperationType == AccountOperationType.expense
               ? 'expense_added'.tr()
@@ -57,8 +60,8 @@ class AddAccountOperationBottomSheetBody extends StatelessWidget {
   }
 }
 
-class _AddAccountOperationBottomSheetContent extends StatelessWidget {
-  const _AddAccountOperationBottomSheetContent({
+class AddAccountOperationBottomSheetContent extends StatelessWidget {
+  const AddAccountOperationBottomSheetContent({
     Key? key,
     required this.accountOperationType,
   }) : super(key: key);
@@ -68,7 +71,12 @@ class _AddAccountOperationBottomSheetContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+      padding: EdgeInsets.only(
+        left: 32.0,
+        right: 32.0,
+        top: 16.0,
+        bottom: 16.0 + MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -79,62 +87,71 @@ class _AddAccountOperationBottomSheetContent extends StatelessWidget {
             style: Theme.of(context).textTheme.headline2,
           ),
           const SizedBox(height: 16),
-          UnderlineTextField(
-            hintText: 'add_account_enter_account_value'.tr(),
-            keyboardType: TextInputType.number,
-            onChange: (value) =>
-                context.read<AddAccountOperationCubit>().onValueChanged(value),
-          ),
+          const OperationValueInput(),
           const SizedBox(height: 12),
           const AccountPicker(),
           const SizedBox(height: 16),
-          SubmitButton(
-            label: 'account_operation_add'.tr(),
-            onPressed: () =>
-                context.read<AddAccountOperationCubit>().onSubmitPressed(),
-          ),
+          const SubmitButtonSection(),
         ],
       ),
     );
   }
 }
 
-class AccountPicker extends HookWidget {
-  const AccountPicker({
+class OperationValueInput extends StatelessWidget {
+  const OperationValueInput({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final pickerValue = useState<String?>(null);
-
     return BlocBuilder<AddAccountOperationCubit, AddAccountOperationState>(
-        buildWhen: (previous, current) => previous.accounts != current.accounts,
-        builder: (context, state) {
-          return DropdownButton<String>(
-            value: pickerValue.value,
-            hint: const Text('add_account_select_currency').tr(),
-            isExpanded: true,
-            underline: Container(
-              height: 1.5,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            items: state.accounts
-                ?.map(
-                  (account) => DropdownMenuItem(
-                    value: account.id,
-                    child: Text(account.name),
-                  ),
-                )
-                .toList(),
-            onChanged: (accountId) {
-              context
-                  .read<AddAccountOperationCubit>()
-                  .onSelectedAccount(accountId);
+      buildWhen: (previous, current) =>
+          previous.accountOperationValue != current.accountOperationValue,
+      builder: (context, state) {
+        return UnderlineTextField(
+          hintText: 'add_account_operation_value'.tr(),
+          keyboardType: TextInputType.number,
+          errorText: state.accountOperationValue.invalid
+              ? _getErrorText(state.accountOperationValue.error)
+              : null,
+          onChange: (value) =>
+              context.read<AddAccountOperationCubit>().onValueChanged(value),
+        );
+      },
+    );
+  }
 
-              pickerValue.value = accountId;
-            },
-          );
-        });
+  String? _getErrorText(MoneyInputError? valueError) {
+    if (valueError == null) return null;
+    if (valueError == MoneyInputError.empty) {
+      return "add_account_operation_empty_value_error".tr();
+    }
+    return "add_account_operation_invalid_value_error".tr();
+  }
+}
+
+class SubmitButtonSection extends StatelessWidget {
+  const SubmitButtonSection({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AddAccountOperationCubit, AddAccountOperationState>(
+      buildWhen: (previous, current) =>
+          previous.formStatus != current.formStatus ||
+          previous.selectedAccountId != current.selectedAccountId,
+      builder: (context, state) {
+        return SubmitButton(
+          label: 'account_operation_add'.tr(),
+          inProgress: state.formStatus == FormzStatus.submissionInProgress,
+          onPressed: state.formStatus != FormzStatus.invalid &&
+                  state.selectedAccountId != null
+              ? () => context.read<AddAccountOperationCubit>().onSubmitPressed()
+              : null,
+        );
+      },
+    );
   }
 }
