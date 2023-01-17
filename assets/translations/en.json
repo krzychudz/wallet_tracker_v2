@@ -33,5 +33,7 @@
     "accounts_history_label": "Accounts History",
     "accounts_history_empty": "You have no transactions yet.",
     "add_account_operation_value": "Enter operation value",
-    "add_account_operation_select_account": "Select account"
- }
+    "add_account_operation_select_account": "Select account",
+    "add_account_operation_empty_value_error": "Value operation cannot be empty",
+    "add_account_operation_invalid_value_error": "Money value is invalid"
+}
