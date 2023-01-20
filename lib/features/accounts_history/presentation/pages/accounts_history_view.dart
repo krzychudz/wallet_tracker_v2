@@ -5,10 +5,10 @@ import 'package:sliver_tools/sliver_tools.dart';
 import 'package:wallet_tracker_v2/core/data/models/account_operation/account_operation.dart';
 import 'package:wallet_tracker_v2/core/data/models/grouped_data/grouped_data.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
+import 'package:wallet_tracker_v2/core/widgets/header/app_header.dart';
 import 'package:wallet_tracker_v2/features/accounts_history/presentation/cubit/accounts_history_cubit.dart';
 import 'package:wallet_tracker_v2/features/accounts_history/presentation/cubit/accounts_history_state.dart';
 import 'package:wallet_tracker_v2/features/accounts_history/presentation/widgets/account_operation/account_operation_tile.dart';
-import 'package:wallet_tracker_v2/features/accounts_history/presentation/widgets/date_header.dart';
 
 class AccountsHistoryView extends StatelessWidget {
   const AccountsHistoryView({super.key});
@@ -48,7 +48,7 @@ class AccountsOperationList extends StatelessWidget {
             pushPinnedChildren: true,
             children: [
               SliverPinnedHeader(
-                child: DateHeader(label: accountOperationsGroup.header),
+                child: AppHeader(label: accountOperationsGroup.header),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(

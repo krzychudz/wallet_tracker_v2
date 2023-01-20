@@ -11,7 +11,7 @@ class AppHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.withOpacity(0.5),
+      color: const Color(0xFFE6E6E6),
       padding: const EdgeInsets.all(12),
       child: Text(
         label,
