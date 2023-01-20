@@ -11,8 +11,7 @@ class AccountsHistoryCubit extends Cubit<AccountsHistoryState> {
 
   void onPageEntered() async {
     final accountOperationsData = await _getAccountOperations();
-    accountOperationsData.fold(
-      (l) => print("Error: ${l.message}"),
+    accountOperationsData.map(
       (accountOperations) => emit(
         AccountsHistoryState.data(accountOperations.groupedByData),
       ),

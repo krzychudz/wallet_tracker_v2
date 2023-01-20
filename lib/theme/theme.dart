@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 ThemeData lightThemeData(BuildContext context) {
@@ -17,41 +16,49 @@ ThemeData lightThemeData(BuildContext context) {
     ),
     primaryColor: Colors.white,
     backgroundColor: const Color(0xffE5E5E5),
-    textTheme: TextTheme(
-      headline1: GoogleFonts.montserrat(
+    textTheme: const TextTheme(
+      headline1: TextStyle(
         color: Colors.black,
         fontSize: 18.0,
-      ),
-      headline2: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 16.0,
-        fontWeight: FontWeight.w600,
-      ),
-      headline3: GoogleFonts.montserrat(
-        color: Colors.black,
-        fontSize: 14.0,
+        fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
-      headline4: GoogleFonts.montserrat(
+      headline2: TextStyle(
+          color: Colors.black,
+          fontSize: 16.0,
+          fontFamily: 'Montserrat',
+          fontWeight: FontWeight.w600),
+      headline3: TextStyle(
+        color: Colors.black,
+        fontSize: 14.0,
+        fontFamily: 'Montserrat',
+        fontWeight: FontWeight.w500,
+      ),
+      headline4: TextStyle(
         color: Colors.grey,
         fontSize: 12.0,
+        fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
-      bodyText1: GoogleFonts.montserrat(
+      bodyText1: TextStyle(
         color: Colors.black,
         fontSize: 12.0,
+        fontFamily: 'Montserrat',
       ),
-      bodyText2: GoogleFonts.montserrat(
+      bodyText2: TextStyle(
         color: CustomColors.blackText,
         fontSize: 10.0,
+        fontFamily: 'Montserrat',
       ),
-      caption: GoogleFonts.montserrat(
+      caption: TextStyle(
         color: Colors.black,
         fontSize: 14.0,
+        fontFamily: 'Montserrat',
       ),
-      subtitle1: GoogleFonts.montserrat(
+      subtitle1: TextStyle(
         color: Colors.black,
         fontSize: 14.0,
+        fontFamily: 'Montserrat',
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -71,7 +78,11 @@ ThemeData lightThemeData(BuildContext context) {
         // backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         textStyle: MaterialStateProperty.all<TextStyle>(
-          GoogleFonts.montserrat(color: Colors.black, fontSize: 14.0),
+          const TextStyle(
+            color: Colors.black,
+            fontSize: 14.0,
+            fontFamily: 'Montserrat',
+          ),
         ),
       ),
     ),
