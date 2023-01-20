@@ -20,11 +20,14 @@ class AccountsHistoryView extends StatelessWidget {
       body: BlocBuilder<AccountsHistoryCubit, AccountsHistoryState>(
         buildWhen: (previous, current) => previous != current,
         builder: (context, state) => state.map(
-          data: (accountOperations) => AccountsOperationList(
-            accountsOperation: accountOperations.data,
-          ),
+          data: (accountOperations) {
+            if (accountOperations.data.isEmpty) return const EmptyPlaceholder();
+            return AccountsOperationList(
+              accountsOperation: accountOperations.data,
+            );
+          },
           loading: (_) => const ProgressIndicator(),
-          error: (_) => const ErrorPlaceholder(),
+          error: (_) => const EmptyPlaceholder(),
         ),
       ),
     );
@@ -68,14 +71,18 @@ class AccountsOperationList extends StatelessWidget {
   }
 }
 
-class ErrorPlaceholder extends StatelessWidget {
-  const ErrorPlaceholder({
+class EmptyPlaceholder extends StatelessWidget {
+  const EmptyPlaceholder({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text(tr('accounts_history_empty')));
+    return Center(
+        child: Text(
+      tr('accounts_history_empty'),
+      style: Theme.of(context).textTheme.caption,
+    ));
   }
 }
 
