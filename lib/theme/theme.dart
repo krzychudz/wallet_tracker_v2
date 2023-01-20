@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return Theme.of(context).copyWith(
@@ -41,7 +42,7 @@ ThemeData lightThemeData(BuildContext context) {
         fontSize: 12.0,
       ),
       bodyText2: GoogleFonts.montserrat(
-        color: const Color(0xff3D4548),
+        color: CustomColors.blackText,
         fontSize: 10.0,
       ),
       caption: GoogleFonts.montserrat(

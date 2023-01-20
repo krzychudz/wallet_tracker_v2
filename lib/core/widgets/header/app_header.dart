@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({
@@ -11,7 +12,7 @@ class AppHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFE6E6E6),
+      color: CustomColors.grey,
       padding: const EdgeInsets.all(12),
       child: Text(
         label,
