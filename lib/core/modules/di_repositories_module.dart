@@ -1,8 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/data/repositories/account_operations_repository.dart';
 import 'package:wallet_tracker_v2/core/data/repositories/accounts_repository.dart';
+import 'package:wallet_tracker_v2/core/data/repositories/quick_actions_repository/quick_actions_repository.dart';
 import 'package:wallet_tracker_v2/core/domain/repositories/account_operations_repository_interface.dart';
 import 'package:wallet_tracker_v2/core/domain/repositories/account_repository_interface.dart';
+import 'package:wallet_tracker_v2/core/domain/repositories/quick_actions_repository/quick_actions_repository.dart';
 
 class DIRepositoriesModule extends Module {
   @override
@@ -15,6 +17,10 @@ class DIRepositoriesModule extends Module {
           (i) => AccountOperationsRepository(
             i(),
           ),
+          export: true,
+        ),
+        Bind.lazySingleton<QuickActionsRepositoryInterface>(
+          (i) => QuickActionsRepository(),
           export: true,
         )
       ];

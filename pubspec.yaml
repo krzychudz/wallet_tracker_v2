@@ -33,6 +33,7 @@ dependencies:
   sliver_tools: ^0.2.8
   collection: ^1.16.0
   intl: ^0.17.0
+  quick_actions: ^1.0.1
 
 dev_dependencies:
   flutter_test:
