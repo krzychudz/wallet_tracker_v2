@@ -10,12 +10,12 @@ const QuickActions quickActions = QuickActions();
 final shortcutItems = <ShortcutItem>[
   ShortcutItem(
     type: QuickAction.newIncome.name,
-    localizedTitle: 'Action one',
-    icon: 'AppIcon',
+    localizedTitle: 'Add new Income',
+    icon: 'ic_launcher',
   ),
   ShortcutItem(
     type: QuickAction.newExpense.name,
-    localizedTitle: 'Action two',
+    localizedTitle: 'Add new Expense',
     icon: 'ic_launcher',
   ),
 ];

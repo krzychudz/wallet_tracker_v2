@@ -9,7 +9,7 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/pages/dashboar
 class DashboardModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind.factory((i) => DashboardCubit(i())),
+        Bind.factory((i) => DashboardCubit(i(), i())),
         Bind.factory((i) => AddAccountOperationCubit(i(), i()))
       ];
 
