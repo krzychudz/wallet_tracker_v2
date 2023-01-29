@@ -1,13 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
-import 'package:wallet_tracker_v2/core/data/repositories/quick_actions_repository/quick_actions_repository.dart';
 import 'package:wallet_tracker_v2/core/enums/operation_type.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
 import 'package:wallet_tracker_v2/core/widgets/progress_indicator/progress_indicator.dart';
-import 'package:wallet_tracker_v2/features/add_account/add_account_module.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_state.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/add_account_operation/add_account_operation_bottom_sheet.dart';
@@ -15,6 +12,7 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashbo
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/accounts_header.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/add_expense_income_button.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
+import 'package:wallet_tracker_v2/features/quick_actions/quick_actions.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions_cubit.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 

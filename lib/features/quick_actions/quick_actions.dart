@@ -1,9 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:quick_actions/quick_actions.dart';
-import 'package:wallet_tracker_v2/core/data/repositories/quick_actions_repository/quick_actions_repository.dart';
 
-enum Shortcut { AddIncome, AddExpense }
+enum QuickAction { newExpense, newIncome }
 
 const QuickActions quickActions = QuickActions();
 

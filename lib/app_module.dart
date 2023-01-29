@@ -9,7 +9,7 @@ class AppModule extends Module {
   @override
   List<Bind> get binds => [
         Bind.singleton<QuickActionsCubit>(
-          (i) => QuickActionsCubit(i()),
+          (i) => QuickActionsCubit(),
         )
       ];
 
