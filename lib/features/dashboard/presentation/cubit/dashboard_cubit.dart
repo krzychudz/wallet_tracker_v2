@@ -13,6 +13,7 @@ class DashboardCubit extends Cubit<DashboardState> {
   }
 
   final WatchAccounts _watchAccounts;
+
   late StreamSubscription<List<Account>> _accountRepositorySubscription;
 
   void _initListeners() {

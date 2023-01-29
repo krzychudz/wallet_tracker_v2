@@ -16,6 +16,6 @@ class DIRepositoriesModule extends Module {
             i(),
           ),
           export: true,
-        )
+        ),
       ];
 }
