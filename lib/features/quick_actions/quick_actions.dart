@@ -10,11 +10,11 @@ final shortcutItems = <ShortcutItem>[
   ShortcutItem(
     type: QuickAction.newIncome.name,
     localizedTitle: 'Add new Income',
-    icon: 'ic_launcher',
+    icon: 'add_income',
   ),
   ShortcutItem(
     type: QuickAction.newExpense.name,
     localizedTitle: 'Add new Expense',
-    icon: 'ic_launcher',
+    icon: 'add_expense',
   ),
 ];
