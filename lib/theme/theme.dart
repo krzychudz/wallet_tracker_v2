@@ -3,10 +3,7 @@ import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return Theme.of(context).copyWith(
-    colorScheme: ColorScheme.fromSwatch().copyWith(
-      secondary: Colors.black,
-      primary: Colors.white,
-    ),
+    textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.black),
     inputDecorationTheme: const InputDecorationTheme(
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
@@ -15,47 +12,46 @@ ThemeData lightThemeData(BuildContext context) {
       ),
     ),
     primaryColor: Colors.white,
-    backgroundColor: const Color(0xffE5E5E5),
     textTheme: const TextTheme(
-      headline1: TextStyle(
+      displayLarge: TextStyle(
         color: Colors.black,
         fontSize: 18.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
-      headline2: TextStyle(
+      displayMedium: TextStyle(
           color: Colors.black,
           fontSize: 16.0,
           fontFamily: 'Montserrat',
           fontWeight: FontWeight.w600),
-      headline3: TextStyle(
+      displaySmall: TextStyle(
         color: Colors.black,
         fontSize: 14.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
-      headline4: TextStyle(
+      headlineMedium: TextStyle(
         color: Colors.grey,
         fontSize: 12.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
         color: Colors.black,
         fontSize: 12.0,
         fontFamily: 'Montserrat',
       ),
-      bodyText2: TextStyle(
+      bodyMedium: TextStyle(
         color: CustomColors.blackText,
         fontSize: 10.0,
         fontFamily: 'Montserrat',
       ),
-      caption: TextStyle(
+      bodySmall: TextStyle(
         color: Colors.black,
         fontSize: 14.0,
         fontFamily: 'Montserrat',
       ),
-      subtitle1: TextStyle(
+      titleMedium: TextStyle(
         color: Colors.black,
         fontSize: 14.0,
         fontFamily: 'Montserrat',
@@ -75,7 +71,6 @@ ThemeData lightThemeData(BuildContext context) {
             return Colors.black; // Use the component's default.
           },
         ),
-        // backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
         foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
         textStyle: MaterialStateProperty.all<TextStyle>(
           const TextStyle(
@@ -86,5 +81,11 @@ ThemeData lightThemeData(BuildContext context) {
         ),
       ),
     ),
+    colorScheme: ColorScheme.fromSwatch()
+        .copyWith(
+          secondary: Colors.black,
+          primary: Colors.white,
+        )
+        .copyWith(background: const Color(0xffE5E5E5)),
   );
 }
