@@ -45,7 +45,6 @@ class DashboardViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.mainBackground,
       appBar: MainAppBar(
         title: 'app_name_label'.tr(),
       ),

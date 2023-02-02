@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
-ThemeData lightThemeData(BuildContext context) {
-  return ThemeData.light().copyWith(
-    textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.black),
+ThemeData darkThemeData(BuildContext context) {
+  return ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: Colors.black,
+    textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.white),
     inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: Colors.white,
+      ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: Colors.black,
         ),
       ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.white),
+      ),
     ),
-    primaryColor: Colors.white,
+    primaryColor: Colors.black,
     textTheme: const TextTheme(
       displayLarge: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 18.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
@@ -31,7 +37,7 @@ ThemeData lightThemeData(BuildContext context) {
         fontWeight: FontWeight.w500,
       ),
       headlineMedium: TextStyle(
-        color: Colors.grey,
+        color: Colors.black,
         fontSize: 12.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
@@ -42,36 +48,41 @@ ThemeData lightThemeData(BuildContext context) {
         fontFamily: 'Montserrat',
       ),
       bodyMedium: TextStyle(
-        color: CustomColors.blackText,
+        color: Colors.black,
         fontSize: 10.0,
         fontFamily: 'Montserrat',
       ),
       bodySmall: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 14.0,
         fontFamily: 'Montserrat',
       ),
       titleMedium: TextStyle(
-        color: Colors.black,
+        color: Colors.white,
         fontSize: 14.0,
         fontFamily: 'Montserrat',
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: Colors.white),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Colors.white, foregroundColor: Colors.black),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {
             if (states.contains(MaterialState.pressed)) {
-              return Colors.black.withOpacity(0.5);
+              return Colors.white.withOpacity(0.5);
             } else {
               if (states.contains(MaterialState.disabled)) {
-                return Colors.black.withOpacity(0.5);
+                return Colors.white.withOpacity(0.5);
               }
             }
-            return Colors.black; // Use the component's default.
+            return Colors.white; // Use the component's default.
           },
         ),
-        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
         textStyle: MaterialStateProperty.all<TextStyle>(
           const TextStyle(
             color: Colors.black,
@@ -83,8 +94,8 @@ ThemeData lightThemeData(BuildContext context) {
     ),
     colorScheme: ColorScheme.fromSwatch()
         .copyWith(
-          secondary: Colors.black,
-          primary: Colors.white,
+          secondary: Colors.white,
+          primary: Colors.black,
         )
         .copyWith(background: const Color(0xffE5E5E5)),
   );

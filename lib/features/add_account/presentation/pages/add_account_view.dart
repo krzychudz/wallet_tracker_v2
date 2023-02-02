@@ -154,7 +154,11 @@ class CurrencyPicker extends StatelessWidget {
           final currencyCode = state.currencyCode.value;
           return DropdownButton(
             value: currencyCode.isNotEmpty ? currencyCode : null,
-            hint: const Text('add_account_select_currency').tr(),
+            iconEnabledColor: Theme.of(context).colorScheme.secondary,
+            hint: Text(
+              'add_account_select_currency',
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            ).tr(),
             isExpanded: true,
             underline: Container(
               height: 1.5,
