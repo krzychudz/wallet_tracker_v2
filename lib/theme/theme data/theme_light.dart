@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 ThemeData lightThemeData(BuildContext context) {
-  return Theme.of(context).copyWith(
+  return ThemeData.light().copyWith(
     textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.black),
     inputDecorationTheme: const InputDecorationTheme(
       focusedBorder: UnderlineInputBorder(
