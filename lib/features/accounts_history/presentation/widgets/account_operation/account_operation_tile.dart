@@ -16,14 +16,17 @@ class AccountOperationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: AccountOperationTileBody(accountOperation: accountOperation),
-        ),
-        if (applyDivider) const Divider(height: 1, indent: 16, endIndent: 16)
-      ],
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: AccountOperationTileBody(accountOperation: accountOperation),
+          ),
+          if (applyDivider) const Divider(height: 1, indent: 16, endIndent: 16)
+        ],
+      ),
     );
   }
 }

@@ -124,20 +124,23 @@ class AccountInfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.headline3,
-          ),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headline2,
-          ),
-        ],
+    return Container(
+      color: Theme.of(context).colorScheme.secondary,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              label,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            Text(
+              value,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+          ],
+        ),
       ),
     );
   }

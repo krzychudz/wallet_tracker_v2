@@ -10,7 +10,7 @@ ThemeData darkThemeData(BuildContext context) {
       ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
-          color: Colors.black,
+          color: Colors.white,
         ),
       ),
       enabledBorder: UnderlineInputBorder(
