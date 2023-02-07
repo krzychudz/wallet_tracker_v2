@@ -5,6 +5,7 @@ import 'package:wallet_tracker_v2/features/add_account/add_account_module.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/add_account_operation/add_account_operation_cubit.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/cubit/dashboard_cubit.dart';
 import 'package:wallet_tracker_v2/features/dashboard/presentation/pages/dashboard/dashboard_screen.dart';
+import 'package:wallet_tracker_v2/features/settings/settings_screen.dart';
 
 class DashboardModule extends Module {
   @override
@@ -19,6 +20,10 @@ class DashboardModule extends Module {
           '/',
           child: (context, args) => const DashboardScreen(),
         ),
+        ChildRoute(
+          SettingsScreen.route,
+          child: (context, args) => const SettingsScreen(),
+        ),
         ModuleRoute(
           AddAccountModule.route,
           module: AddAccountModule(),
@@ -30,6 +35,6 @@ class DashboardModule extends Module {
         ModuleRoute(
           AccountsHistoryModule.route,
           module: AccountsHistoryModule(),
-        )
+        ),
       ];
 }
