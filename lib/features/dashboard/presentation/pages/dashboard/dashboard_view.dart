@@ -14,7 +14,6 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashbo
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions_cubit.dart';
-import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -47,6 +46,12 @@ class DashboardViewBody extends StatelessWidget {
     return Scaffold(
       appBar: MainAppBar(
         title: 'app_name_label'.tr(),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.settings),
+          )
+        ],
       ),
       body: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {

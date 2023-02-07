@@ -2,11 +2,103 @@
 
 part of 'database.dart';
 
-// **************************************************************************
-// DriftDatabaseGenerator
-// **************************************************************************
-
 // ignore_for_file: type=lint
+class $AccountsTableTable extends AccountsTable
+    with TableInfo<$AccountsTableTable, AccountsTableData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AccountsTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _balanceMeta =
+      const VerificationMeta('balance');
+  @override
+  late final GeneratedColumn<int> balance = GeneratedColumn<int>(
+      'balance', aliasedName, false,
+      check: () => balance.isBiggerOrEqualValue(0),
+      type: DriftSqlType.int,
+      requiredDuringInsert: true);
+  static const VerificationMeta _currencyCodeMeta =
+      const VerificationMeta('currencyCode');
+  @override
+  late final GeneratedColumn<String> currencyCode = GeneratedColumn<String>(
+      'currency_code', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _nameMeta = const VerificationMeta('name');
+  @override
+  late final GeneratedColumn<String> name =
+      GeneratedColumn<String>('name', aliasedName, false,
+          additionalChecks: GeneratedColumn.checkTextLength(
+            minTextLength: 3,
+          ),
+          type: DriftSqlType.string,
+          requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [id, balance, currencyCode, name];
+  @override
+  String get aliasedName => _alias ?? 'accounts_table';
+  @override
+  String get actualTableName => 'accounts_table';
+  @override
+  VerificationContext validateIntegrity(Insertable<AccountsTableData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('balance')) {
+      context.handle(_balanceMeta,
+          balance.isAcceptableOrUnknown(data['balance']!, _balanceMeta));
+    } else if (isInserting) {
+      context.missing(_balanceMeta);
+    }
+    if (data.containsKey('currency_code')) {
+      context.handle(
+          _currencyCodeMeta,
+          currencyCode.isAcceptableOrUnknown(
+              data['currency_code']!, _currencyCodeMeta));
+    } else if (isInserting) {
+      context.missing(_currencyCodeMeta);
+    }
+    if (data.containsKey('name')) {
+      context.handle(
+          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    } else if (isInserting) {
+      context.missing(_nameMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AccountsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AccountsTableData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      balance: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}balance'])!,
+      currencyCode: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}currency_code'])!,
+      name: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+    );
+  }
+
+  @override
+  $AccountsTableTable createAlias(String alias) {
+    return $AccountsTableTable(attachedDatabase, alias);
+  }
+}
+
 class AccountsTableData extends DataClass
     implements Insertable<AccountsTableData> {
   final String id;
@@ -166,47 +258,36 @@ class AccountsTableCompanion extends UpdateCompanion<AccountsTableData> {
   }
 }
 
-class $AccountsTableTable extends AccountsTable
-    with TableInfo<$AccountsTableTable, AccountsTableData> {
+class $ExpensesTableTable extends ExpensesTable
+    with TableInfo<$ExpensesTableTable, ExpensesTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $AccountsTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  $ExpensesTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _balanceMeta = const VerificationMeta('balance');
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
   @override
-  late final GeneratedColumn<int> balance = GeneratedColumn<int>(
-      'balance', aliasedName, false,
-      check: () => balance.isBiggerOrEqualValue(0),
-      type: DriftSqlType.int,
-      requiredDuringInsert: true);
-  final VerificationMeta _currencyCodeMeta =
-      const VerificationMeta('currencyCode');
+  late final GeneratedColumn<int> value = GeneratedColumn<int>(
+      'value', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _accountIdMeta =
+      const VerificationMeta('accountId');
   @override
-  late final GeneratedColumn<String> currencyCode = GeneratedColumn<String>(
-      'currency_code', aliasedName, false,
+  late final GeneratedColumn<String> accountId = GeneratedColumn<String>(
+      'account_id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
-  late final GeneratedColumn<String> name =
-      GeneratedColumn<String>('name', aliasedName, false,
-          additionalChecks: GeneratedColumn.checkTextLength(
-            minTextLength: 3,
-          ),
-          type: DriftSqlType.string,
-          requiredDuringInsert: true);
+  List<GeneratedColumn> get $columns => [id, value, accountId];
   @override
-  List<GeneratedColumn> get $columns => [id, balance, currencyCode, name];
+  String get aliasedName => _alias ?? 'expenses_table';
   @override
-  String get aliasedName => _alias ?? 'accounts_table';
+  String get actualTableName => 'expenses_table';
   @override
-  String get actualTableName => 'accounts_table';
-  @override
-  VerificationContext validateIntegrity(Insertable<AccountsTableData> instance,
+  VerificationContext validateIntegrity(Insertable<ExpensesTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -215,25 +296,17 @@ class $AccountsTableTable extends AccountsTable
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('balance')) {
-      context.handle(_balanceMeta,
-          balance.isAcceptableOrUnknown(data['balance']!, _balanceMeta));
-    } else if (isInserting) {
-      context.missing(_balanceMeta);
-    }
-    if (data.containsKey('currency_code')) {
+    if (data.containsKey('value')) {
       context.handle(
-          _currencyCodeMeta,
-          currencyCode.isAcceptableOrUnknown(
-              data['currency_code']!, _currencyCodeMeta));
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
     } else if (isInserting) {
-      context.missing(_currencyCodeMeta);
+      context.missing(_valueMeta);
     }
-    if (data.containsKey('name')) {
-      context.handle(
-          _nameMeta, name.isAcceptableOrUnknown(data['name']!, _nameMeta));
+    if (data.containsKey('account_id')) {
+      context.handle(_accountIdMeta,
+          accountId.isAcceptableOrUnknown(data['account_id']!, _accountIdMeta));
     } else if (isInserting) {
-      context.missing(_nameMeta);
+      context.missing(_accountIdMeta);
     }
     return context;
   }
@@ -241,23 +314,21 @@ class $AccountsTableTable extends AccountsTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  AccountsTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ExpensesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return AccountsTableData(
-      id: attachedDatabase.options.types
+    return ExpensesTableData(
+      id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      balance: attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}balance'])!,
-      currencyCode: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}currency_code'])!,
-      name: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}value'])!,
+      accountId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}account_id'])!,
     );
   }
 
   @override
-  $AccountsTableTable createAlias(String alias) {
-    return $AccountsTableTable(attachedDatabase, alias);
+  $ExpensesTableTable createAlias(String alias) {
+    return $ExpensesTableTable(attachedDatabase, alias);
   }
 }
 
@@ -394,23 +465,24 @@ class ExpensesTableCompanion extends UpdateCompanion<ExpensesTableData> {
   }
 }
 
-class $ExpensesTableTable extends ExpensesTable
-    with TableInfo<$ExpensesTableTable, ExpensesTableData> {
+class $IncomesTableTable extends IncomesTable
+    with TableInfo<$IncomesTableTable, IncomesTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $ExpensesTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  $IncomesTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _valueMeta = const VerificationMeta('value');
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
   @override
   late final GeneratedColumn<int> value = GeneratedColumn<int>(
       'value', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  final VerificationMeta _accountIdMeta = const VerificationMeta('accountId');
+  static const VerificationMeta _accountIdMeta =
+      const VerificationMeta('accountId');
   @override
   late final GeneratedColumn<String> accountId = GeneratedColumn<String>(
       'account_id', aliasedName, false,
@@ -418,11 +490,11 @@ class $ExpensesTableTable extends ExpensesTable
   @override
   List<GeneratedColumn> get $columns => [id, value, accountId];
   @override
-  String get aliasedName => _alias ?? 'expenses_table';
+  String get aliasedName => _alias ?? 'incomes_table';
   @override
-  String get actualTableName => 'expenses_table';
+  String get actualTableName => 'incomes_table';
   @override
-  VerificationContext validateIntegrity(Insertable<ExpensesTableData> instance,
+  VerificationContext validateIntegrity(Insertable<IncomesTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -449,21 +521,21 @@ class $ExpensesTableTable extends ExpensesTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  ExpensesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  IncomesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ExpensesTableData(
-      id: attachedDatabase.options.types
+    return IncomesTableData(
+      id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      value: attachedDatabase.options.types
+      value: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}value'])!,
-      accountId: attachedDatabase.options.types
+      accountId: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}account_id'])!,
     );
   }
 
   @override
-  $ExpensesTableTable createAlias(String alias) {
-    return $ExpensesTableTable(attachedDatabase, alias);
+  $IncomesTableTable createAlias(String alias) {
+    return $IncomesTableTable(attachedDatabase, alias);
   }
 }
 
@@ -600,48 +672,59 @@ class IncomesTableCompanion extends UpdateCompanion<IncomesTableData> {
   }
 }
 
-class $IncomesTableTable extends IncomesTable
-    with TableInfo<$IncomesTableTable, IncomesTableData> {
+class $AccountOperationsTableTable extends AccountOperationsTable
+    with TableInfo<$AccountOperationsTableTable, AccountOperationsTableData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $IncomesTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
+  $AccountOperationsTableTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<String> id = GeneratedColumn<String>(
       'id', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _valueMeta = const VerificationMeta('value');
-  @override
-  late final GeneratedColumn<int> value = GeneratedColumn<int>(
-      'value', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  final VerificationMeta _accountIdMeta = const VerificationMeta('accountId');
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: Constant(const Uuid().v4()));
+  static const VerificationMeta _accountIdMeta =
+      const VerificationMeta('accountId');
   @override
   late final GeneratedColumn<String> accountId = GeneratedColumn<String>(
       'account_id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _valueMeta = const VerificationMeta('value');
   @override
-  List<GeneratedColumn> get $columns => [id, value, accountId];
+  late final GeneratedColumn<int> value = GeneratedColumn<int>(
+      'value', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
   @override
-  String get aliasedName => _alias ?? 'incomes_table';
+  late final GeneratedColumnWithTypeConverter<AccountOperationType, int> type =
+      GeneratedColumn<int>('type', aliasedName, false,
+              type: DriftSqlType.int, requiredDuringInsert: true)
+          .withConverter<AccountOperationType>(
+              $AccountOperationsTableTable.$convertertype);
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
   @override
-  String get actualTableName => 'incomes_table';
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
   @override
-  VerificationContext validateIntegrity(Insertable<IncomesTableData> instance,
+  List<GeneratedColumn> get $columns => [id, accountId, value, type, createdAt];
+  @override
+  String get aliasedName => _alias ?? 'account_operations_table';
+  @override
+  String get actualTableName => 'account_operations_table';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<AccountOperationsTableData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
-    }
-    if (data.containsKey('value')) {
-      context.handle(
-          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
-    } else if (isInserting) {
-      context.missing(_valueMeta);
     }
     if (data.containsKey('account_id')) {
       context.handle(_accountIdMeta,
@@ -649,28 +732,49 @@ class $IncomesTableTable extends IncomesTable
     } else if (isInserting) {
       context.missing(_accountIdMeta);
     }
+    if (data.containsKey('value')) {
+      context.handle(
+          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
+    }
+    context.handle(_typeMeta, const VerificationResult.success());
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
     return context;
   }
 
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  IncomesTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  AccountOperationsTableData map(Map<String, dynamic> data,
+      {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return IncomesTableData(
-      id: attachedDatabase.options.types
+    return AccountOperationsTableData(
+      id: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      value: attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}value'])!,
-      accountId: attachedDatabase.options.types
+      accountId: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}account_id'])!,
+      value: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}value'])!,
+      type: $AccountOperationsTableTable.$convertertype.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
     );
   }
 
   @override
-  $IncomesTableTable createAlias(String alias) {
-    return $IncomesTableTable(attachedDatabase, alias);
+  $AccountOperationsTableTable createAlias(String alias) {
+    return $AccountOperationsTableTable(attachedDatabase, alias);
   }
+
+  static JsonTypeConverter2<AccountOperationType, int, int> $convertertype =
+      const EnumIndexConverter<AccountOperationType>(
+          AccountOperationType.values);
 }
 
 class AccountOperationsTableData extends DataClass
@@ -693,7 +797,7 @@ class AccountOperationsTableData extends DataClass
     map['account_id'] = Variable<String>(accountId);
     map['value'] = Variable<int>(value);
     {
-      final converter = $AccountOperationsTableTable.$converter0;
+      final converter = $AccountOperationsTableTable.$convertertype;
       map['type'] = Variable<int>(converter.toSql(type));
     }
     map['created_at'] = Variable<DateTime>(createdAt);
@@ -717,7 +821,8 @@ class AccountOperationsTableData extends DataClass
       id: serializer.fromJson<String>(json['id']),
       accountId: serializer.fromJson<String>(json['accountId']),
       value: serializer.fromJson<int>(json['value']),
-      type: serializer.fromJson<AccountOperationType>(json['type']),
+      type: $AccountOperationsTableTable.$convertertype
+          .fromJson(serializer.fromJson<int>(json['type'])),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
     );
   }
@@ -728,7 +833,8 @@ class AccountOperationsTableData extends DataClass
       'id': serializer.toJson<String>(id),
       'accountId': serializer.toJson<String>(accountId),
       'value': serializer.toJson<int>(value),
-      'type': serializer.toJson<AccountOperationType>(type),
+      'type': serializer.toJson<int>(
+          $AccountOperationsTableTable.$convertertype.toJson(type)),
       'createdAt': serializer.toJson<DateTime>(createdAt),
     };
   }
@@ -838,7 +944,7 @@ class AccountOperationsTableCompanion
       map['value'] = Variable<int>(value.value);
     }
     if (type.present) {
-      final converter = $AccountOperationsTableTable.$converter0;
+      final converter = $AccountOperationsTableTable.$convertertype;
       map['type'] = Variable<int>(converter.toSql(type.value));
     }
     if (createdAt.present) {
@@ -860,109 +966,6 @@ class AccountOperationsTableCompanion
   }
 }
 
-class $AccountOperationsTableTable extends AccountOperationsTable
-    with TableInfo<$AccountOperationsTableTable, AccountOperationsTableData> {
-  @override
-  final GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $AccountOperationsTableTable(this.attachedDatabase, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-      'id', aliasedName, false,
-      type: DriftSqlType.string,
-      requiredDuringInsert: false,
-      defaultValue: Constant(const Uuid().v4()));
-  final VerificationMeta _accountIdMeta = const VerificationMeta('accountId');
-  @override
-  late final GeneratedColumn<String> accountId = GeneratedColumn<String>(
-      'account_id', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
-  final VerificationMeta _valueMeta = const VerificationMeta('value');
-  @override
-  late final GeneratedColumn<int> value = GeneratedColumn<int>(
-      'value', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultValue: const Constant(0));
-  final VerificationMeta _typeMeta = const VerificationMeta('type');
-  @override
-  late final GeneratedColumnWithTypeConverter<AccountOperationType, int> type =
-      GeneratedColumn<int>('type', aliasedName, false,
-              type: DriftSqlType.int, requiredDuringInsert: true)
-          .withConverter<AccountOperationType>(
-              $AccountOperationsTableTable.$converter0);
-  final VerificationMeta _createdAtMeta = const VerificationMeta('createdAt');
-  @override
-  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-      'created_at', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns => [id, accountId, value, type, createdAt];
-  @override
-  String get aliasedName => _alias ?? 'account_operations_table';
-  @override
-  String get actualTableName => 'account_operations_table';
-  @override
-  VerificationContext validateIntegrity(
-      Insertable<AccountOperationsTableData> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('account_id')) {
-      context.handle(_accountIdMeta,
-          accountId.isAcceptableOrUnknown(data['account_id']!, _accountIdMeta));
-    } else if (isInserting) {
-      context.missing(_accountIdMeta);
-    }
-    if (data.containsKey('value')) {
-      context.handle(
-          _valueMeta, value.isAcceptableOrUnknown(data['value']!, _valueMeta));
-    }
-    context.handle(_typeMeta, const VerificationResult.success());
-    if (data.containsKey('created_at')) {
-      context.handle(_createdAtMeta,
-          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
-    } else if (isInserting) {
-      context.missing(_createdAtMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  AccountOperationsTableData map(Map<String, dynamic> data,
-      {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return AccountOperationsTableData(
-      id: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
-      accountId: attachedDatabase.options.types
-          .read(DriftSqlType.string, data['${effectivePrefix}account_id'])!,
-      value: attachedDatabase.options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}value'])!,
-      type: $AccountOperationsTableTable.$converter0.fromSql(attachedDatabase
-          .options.types
-          .read(DriftSqlType.int, data['${effectivePrefix}type'])!),
-      createdAt: attachedDatabase.options.types
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
-    );
-  }
-
-  @override
-  $AccountOperationsTableTable createAlias(String alias) {
-    return $AccountOperationsTableTable(attachedDatabase, alias);
-  }
-
-  static TypeConverter<AccountOperationType, int> $converter0 =
-      const EnumIndexConverter<AccountOperationType>(
-          AccountOperationType.values);
-}
-
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   late final $AccountsTableTable accountsTable = $AccountsTableTable(this);
@@ -974,7 +977,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final AccountOperationsDao accountOperationsDao =
       AccountOperationsDao(this as AppDatabase);
   @override
-  Iterable<TableInfo<Table, dynamic>> get allTables =>
+  Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
