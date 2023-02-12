@@ -18,7 +18,7 @@ class EmptyAccountListPlaceholder extends StatelessWidget {
           child: Text(
             'dashboard_no_accounts_placeholder',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.displaySmall,
           ).tr(),
         ),
       ),
