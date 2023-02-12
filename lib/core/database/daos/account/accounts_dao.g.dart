@@ -2,10 +2,7 @@
 
 part of 'accounts_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$AccountsDaoMixin on DatabaseAccessor<AppDatabase> {
   $AccountsTableTable get accountsTable => attachedDatabase.accountsTable;
 }

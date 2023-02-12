@@ -35,5 +35,7 @@
     "add_account_operation_value": "Enter operation value",
     "add_account_operation_select_account": "Select account",
     "add_account_operation_empty_value_error": "Value operation cannot be empty",
-    "add_account_operation_invalid_value_error": "Money value is invalid"
+    "add_account_operation_invalid_value_error": "Money value is invalid",
+    "settings_label": "Settings Screen",
+    "settings_dark_mode": "Dark mode"
 }

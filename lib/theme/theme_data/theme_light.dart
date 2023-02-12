@@ -3,12 +3,19 @@ import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return ThemeData.light().copyWith(
+    scaffoldBackgroundColor: CustomColors.mainBackground,
     textSelectionTheme: const TextSelectionThemeData(cursorColor: Colors.black),
     inputDecorationTheme: const InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: Colors.black,
+      ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
           color: Colors.black,
         ),
+      ),
+      enabledBorder: UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.black),
       ),
     ),
     primaryColor: Colors.white,
@@ -26,7 +33,7 @@ ThemeData lightThemeData(BuildContext context) {
           fontWeight: FontWeight.w600),
       displaySmall: TextStyle(
         color: Colors.black,
-        fontSize: 14.0,
+        fontSize: 12.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
@@ -38,17 +45,17 @@ ThemeData lightThemeData(BuildContext context) {
       ),
       bodyLarge: TextStyle(
         color: Colors.black,
-        fontSize: 12.0,
+        fontSize: 14.0,
         fontFamily: 'Montserrat',
       ),
       bodyMedium: TextStyle(
         color: CustomColors.blackText,
-        fontSize: 10.0,
+        fontSize: 12.0,
         fontFamily: 'Montserrat',
       ),
       bodySmall: TextStyle(
         color: Colors.black,
-        fontSize: 14.0,
+        fontSize: 10.0,
         fontFamily: 'Montserrat',
       ),
       titleMedium: TextStyle(
@@ -57,6 +64,11 @@ ThemeData lightThemeData(BuildContext context) {
         fontFamily: 'Montserrat',
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(color: Colors.black),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Colors.black, foregroundColor: Colors.white),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(

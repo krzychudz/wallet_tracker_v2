@@ -35,20 +35,10 @@ class AccountDetailsView extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              AppHeader(
-                label: 'account_details_label'.tr(),
-              ),
+              AppHeader(label: 'account_details_label'.tr()),
               if (account != null) AccountDetailsSection(account: account),
               const SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: SubmitButton(
-                  label: 'account_details_remove_account'.tr(),
-                  onPressed: () => context
-                      .read<AccountDetailsCubit>()
-                      .onRemovedAccountPressed(),
-                ),
-              ),
+              const RemoveAccountButton(),
             ],
           ),
         );
@@ -82,6 +72,24 @@ class AccountDetailsView extends StatelessWidget {
   }
 }
 
+class RemoveAccountButton extends StatelessWidget {
+  const RemoveAccountButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: SubmitButton(
+        label: 'account_details_remove_account'.tr(),
+        onPressed: () =>
+            context.read<AccountDetailsCubit>().onRemovedAccountPressed(),
+      ),
+    );
+  }
+}
+
 class AccountDetailsSection extends StatelessWidget {
   const AccountDetailsSection({
     Key? key,
@@ -96,7 +104,9 @@ class AccountDetailsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AccountInfoTile(
-            label: 'account_details_name'.tr(), value: account.name),
+          label: 'account_details_name'.tr(),
+          value: account.name,
+        ),
         const PrimaryDivider(),
         AccountInfoTile(
           label: 'account_details_balance'.tr(),
@@ -124,20 +134,23 @@ class AccountInfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: Theme.of(context).textTheme.headline3,
-          ),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headline2,
-          ),
-        ],
+    return Container(
+      color: Theme.of(context).colorScheme.primary,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              label,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            Text(
+              value,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
+        ),
       ),
     );
   }

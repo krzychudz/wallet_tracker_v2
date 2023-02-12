@@ -16,13 +16,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Theme.of(context).primaryColor,
       title: Text(
         title,
-        style: Theme.of(context).textTheme.headline1,
+        style: Theme.of(context).textTheme.displayLarge,
       ),
       actions: actions,
       automaticallyImplyLeading: true,
-      iconTheme: const IconThemeData(
-        color: Colors.black,
-      ),
     );
   }
 

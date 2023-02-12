@@ -33,21 +33,15 @@ class AddAccountView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView(
-            children: [
-              const SizedBox(height: 16),
-              Text(
-                'add_account_info',
-                style: Theme.of(context).textTheme.headline1,
-                textAlign: TextAlign.center,
-              ).tr(),
-              const SizedBox(height: 16),
-              const AccountNameInput(),
-              const SizedBox(height: 16),
-              const BalanceInput(),
-              const SizedBox(height: 16),
-              const CurrencyPicker(),
-              const SizedBox(height: 24),
-              const SaveButton()
+            children: const [
+              SizedBox(height: 16),
+              AccountNameInput(),
+              SizedBox(height: 16),
+              BalanceInput(),
+              SizedBox(height: 16),
+              CurrencyPicker(),
+              SizedBox(height: 24),
+              SaveButton()
             ],
           ),
         ),
@@ -154,7 +148,11 @@ class CurrencyPicker extends StatelessWidget {
           final currencyCode = state.currencyCode.value;
           return DropdownButton(
             value: currencyCode.isNotEmpty ? currencyCode : null,
-            hint: const Text('add_account_select_currency').tr(),
+            iconEnabledColor: Theme.of(context).colorScheme.secondary,
+            hint: Text(
+              'add_account_select_currency',
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            ).tr(),
             isExpanded: true,
             underline: Container(
               height: 1.5,

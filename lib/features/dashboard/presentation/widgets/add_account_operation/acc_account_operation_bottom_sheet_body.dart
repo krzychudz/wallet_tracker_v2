@@ -84,7 +84,7 @@ class AddAccountOperationBottomSheetContent extends StatelessWidget {
             accountOperationType == AccountOperationType.expense
                 ? 'add_expense'.tr()
                 : 'add_income'.tr(),
-            style: Theme.of(context).textTheme.headline2,
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           const SizedBox(height: 16),
           const OperationValueInput(),

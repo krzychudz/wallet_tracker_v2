@@ -19,12 +19,16 @@ class AccountPicker extends HookWidget {
         builder: (context, state) {
           return DropdownButton<String>(
             value: pickerValue.value,
-            hint: const Text('add_account_operation_select_account').tr(),
+            hint: Text(
+              'add_account_operation_select_account',
+              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+            ).tr(),
             isExpanded: true,
             underline: Container(
               height: 1.5,
               color: Theme.of(context).colorScheme.secondary,
             ),
+            iconEnabledColor: Theme.of(context).colorScheme.secondary,
             items: state.accounts
                 ?.map(
                   (account) => DropdownMenuItem(

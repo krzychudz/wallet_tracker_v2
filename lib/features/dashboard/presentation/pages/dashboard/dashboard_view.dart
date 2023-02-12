@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:wallet_tracker_v2/core/data/models/account/account.dart';
 import 'package:wallet_tracker_v2/core/enums/operation_type.dart';
 import 'package:wallet_tracker_v2/core/widgets/app_bar/app_bar.dart';
@@ -14,7 +15,7 @@ import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashbo
 import 'package:wallet_tracker_v2/features/dashboard/presentation/widgets/dashboard/empty_account_list_placeholder.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions_cubit.dart';
-import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
+import 'package:wallet_tracker_v2/features/settings/settings_screen.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -45,9 +46,14 @@ class DashboardViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.mainBackground,
       appBar: MainAppBar(
         title: 'app_name_label'.tr(),
+        actions: [
+          IconButton(
+            onPressed: () => Modular.to.pushNamed(SettingsScreen.route),
+            icon: const Icon(Icons.settings),
+          )
+        ],
       ),
       body: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {
