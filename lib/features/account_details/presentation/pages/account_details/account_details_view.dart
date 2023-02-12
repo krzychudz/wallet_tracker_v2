@@ -12,6 +12,7 @@ import 'package:wallet_tracker_v2/core/widgets/submit_button/submit_button.dart'
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_cubit.dart';
 import 'package:wallet_tracker_v2/features/account_details/presentation/cubit/account_details_state.dart';
 import 'package:wallet_tracker_v2/core/extensions/snackbar.dart';
+import 'package:wallet_tracker_v2/features/account_details/presentation/widgets/account_info_tile.dart';
 import 'package:wallet_tracker_v2/theme/colors/custom_colors.dart';
 
 class AccountDetailsView extends StatelessWidget {
@@ -118,40 +119,6 @@ class AccountDetailsSection extends StatelessWidget {
             value: account.currencyCode),
         const PrimaryDivider(),
       ],
-    );
-  }
-}
-
-class AccountInfoTile extends StatelessWidget {
-  const AccountInfoTile({
-    Key? key,
-    required this.label,
-    required this.value,
-  }) : super(key: key);
-
-  final String label;
-  final String value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).colorScheme.primary,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              label,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              value,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
