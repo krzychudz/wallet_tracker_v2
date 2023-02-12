@@ -15,17 +15,20 @@ class AddAccountOperationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SpeedDial(
       icon: Icons.add,
+      overlayColor: Colors.transparent,
       children: [
         SpeedDialChild(
           child: const Icon(Icons.money_off),
           label: 'add_expense'.tr(),
           backgroundColor: Colors.red,
+          labelStyle: Theme.of(context).textTheme.displaySmall,
           onTap: () => onTap(AccountOperationType.expense),
         ),
         SpeedDialChild(
           child: const Icon(Icons.attach_money),
           label: 'add_income'.tr(),
           backgroundColor: Colors.green,
+          labelStyle: Theme.of(context).textTheme.displaySmall,
           onTap: () => onTap(AccountOperationType.income),
         )
       ],

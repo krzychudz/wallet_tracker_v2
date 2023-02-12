@@ -32,7 +32,7 @@ ThemeData darkThemeData(BuildContext context) {
           fontWeight: FontWeight.w600),
       displaySmall: TextStyle(
         color: Colors.black,
-        fontSize: 14.0,
+        fontSize: 12.0,
         fontFamily: 'Montserrat',
         fontWeight: FontWeight.w500,
       ),
@@ -43,18 +43,18 @@ ThemeData darkThemeData(BuildContext context) {
         fontWeight: FontWeight.w500,
       ),
       bodyLarge: TextStyle(
-        color: Colors.black,
-        fontSize: 12.0,
+        color: Colors.white,
+        fontSize: 14.0,
         fontFamily: 'Montserrat',
       ),
       bodyMedium: TextStyle(
-        color: Colors.black,
-        fontSize: 10.0,
+        color: Colors.white,
+        fontSize: 12.0,
         fontFamily: 'Montserrat',
       ),
       bodySmall: TextStyle(
         color: Colors.white,
-        fontSize: 14.0,
+        fontSize: 10.0,
         fontFamily: 'Montserrat',
       ),
       titleMedium: TextStyle(

@@ -21,6 +21,7 @@ class UnderlineTextButton extends StatelessWidget {
           decorationColor: Colors.black,
           fontFamily: 'Montserrat',
           fontSize: 12,
+          color: Colors.black,
         ),
       ),
     );

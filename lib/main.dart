@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart'
     hide ModularWatchExtension;
-import 'package:wallet_tracker_v2/core/cubit/app_settings_cubit.dart';
+import 'package:wallet_tracker_v2/core/cubit/app_configuration_cubit.dart';
 import 'package:wallet_tracker_v2/core/cubit/app_configuration_state.dart';
 import 'package:wallet_tracker_v2/features/quick_actions/quick_actions_cubit.dart';
 import 'package:wallet_tracker_v2/theme/theme_data/theme_dark.dart';

@@ -24,7 +24,13 @@ class AccountOperationTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: AccountOperationTileBody(accountOperation: accountOperation),
           ),
-          if (applyDivider) const Divider(height: 1, indent: 16, endIndent: 16)
+          if (applyDivider)
+            Divider(
+              height: 1,
+              indent: 16,
+              endIndent: 16,
+              color: Theme.of(context).colorScheme.secondary,
+            )
         ],
       ),
     );
@@ -46,10 +52,13 @@ class AccountOperationTileBody extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(accountOperation.createdAt.format('dd.MM.yyyy - HH:mm')),
+            Text(
+              accountOperation.createdAt.format('dd.MM.yyyy - HH:mm'),
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             Text(
               accountOperation.accountName ?? '',
-              style: TextStyle(fontSize: 16),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),

@@ -96,7 +96,9 @@ class AccountDetailsSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AccountInfoTile(
-            label: 'account_details_name'.tr(), value: account.name),
+          label: 'account_details_name'.tr(),
+          value: account.name,
+        ),
         const PrimaryDivider(),
         AccountInfoTile(
           label: 'account_details_balance'.tr(),
@@ -125,7 +127,7 @@ class AccountInfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
@@ -133,11 +135,11 @@ class AccountInfoTile extends StatelessWidget {
           children: [
             Text(
               label,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             Text(
               value,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
