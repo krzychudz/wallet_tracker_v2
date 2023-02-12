@@ -35,20 +35,10 @@ class AccountDetailsView extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              AppHeader(
-                label: 'account_details_label'.tr(),
-              ),
+              AppHeader(label: 'account_details_label'.tr()),
               if (account != null) AccountDetailsSection(account: account),
               const SizedBox(height: 32),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: SubmitButton(
-                  label: 'account_details_remove_account'.tr(),
-                  onPressed: () => context
-                      .read<AccountDetailsCubit>()
-                      .onRemovedAccountPressed(),
-                ),
-              ),
+              const RemoveAccountButton(),
             ],
           ),
         );
@@ -78,6 +68,24 @@ class AccountDetailsView extends StatelessWidget {
   void _displaySuccessSnackBar(BuildContext context, String accountName) {
     context.showSnackbar(
       'account_details_remove_success_info'.tr(args: [accountName]),
+    );
+  }
+}
+
+class RemoveAccountButton extends StatelessWidget {
+  const RemoveAccountButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 32),
+      child: SubmitButton(
+        label: 'account_details_remove_account'.tr(),
+        onPressed: () =>
+            context.read<AccountDetailsCubit>().onRemovedAccountPressed(),
+      ),
     );
   }
 }

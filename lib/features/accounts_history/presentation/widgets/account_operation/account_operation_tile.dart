@@ -16,23 +16,20 @@ class AccountOperationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.white,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            child: AccountOperationTileBody(accountOperation: accountOperation),
-          ),
-          if (applyDivider)
-            Divider(
-              height: 1,
-              indent: 16,
-              endIndent: 16,
-              color: Theme.of(context).colorScheme.secondary,
-            )
-        ],
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: AccountOperationTileBody(accountOperation: accountOperation),
+        ),
+        if (applyDivider)
+          Divider(
+            height: 1,
+            indent: 16,
+            endIndent: 16,
+            color: Theme.of(context).colorScheme.secondary,
+          )
+      ],
     );
   }
 }
@@ -90,9 +87,7 @@ class AccountOperationValue extends StatelessWidget {
     final formattedValue = value.formatCurrency(currencyCode);
 
     return Text(
-      type == AccountOperationType.income
-          ? formattedValue
-          : '-${formattedValue}',
+      type == AccountOperationType.income ? formattedValue : '-$formattedValue',
       style: TextStyle(
         color: type == AccountOperationType.income
             ? Colors.green
