@@ -81,7 +81,7 @@ class EmptyPlaceholder extends StatelessWidget {
     return Center(
         child: Text(
       tr('accounts_history_empty'),
-      style: Theme.of(context).textTheme.caption,
+      style: Theme.of(context).textTheme.displaySmall,
     ));
   }
 }
@@ -93,6 +93,10 @@ class ProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
+    return Center(
+      child: CircularProgressIndicator(
+        color: Theme.of(context).colorScheme.secondary,
+      ),
+    );
   }
 }
