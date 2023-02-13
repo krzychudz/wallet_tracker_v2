@@ -20,10 +20,10 @@ void main() async {
       supportedLocales: const [Locale('en')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
-      child: BlocProvider(
-        create: (context) => AppConfigurationCubit(),
-        child: ModularApp(
-          module: AppModule(),
+      child: ModularApp(
+        module: AppModule(),
+        child: BlocProvider(
+          create: (context) => Modular.get<AppConfigurationCubit>()..init(),
           child: const WalletTrackerApp(),
         ),
       ),
