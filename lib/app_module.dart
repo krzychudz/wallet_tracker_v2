@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:wallet_tracker_v2/core/cubit/app_configuration_cubit.dart';
 import 'package:wallet_tracker_v2/core/modules/di_data_module.dart';
 import 'package:wallet_tracker_v2/core/modules/di_repositories_module.dart';
 import 'package:wallet_tracker_v2/core/modules/di_usecases_module.dart';
@@ -10,6 +11,11 @@ class AppModule extends Module {
   List<Bind> get binds => [
         Bind.singleton<QuickActionsCubit>(
           (i) => QuickActionsCubit(),
+        ),
+        Bind.singleton<AppConfigurationCubit>(
+          (i) => AppConfigurationCubit(
+            i(),
+          ),
         )
       ];
 
