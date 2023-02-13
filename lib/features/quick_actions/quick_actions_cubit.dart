@@ -9,7 +9,6 @@ class QuickActionsCubit extends Cubit<QuickAction?> {
 
   void init() async {
     quickActions = const QuickActions();
-
     quickActions.initialize((String shortcutType) {
       final quickAction = QuickAction.values.byName(shortcutType);
       emit(quickAction);
